@@ -10,6 +10,9 @@ public class PlayerInputHandler : MonoBehaviour
 
     private PlayerInput playerInput;
     private PlayerController playerController;
+    public GameObject toInteractWith;
+
+    public bool canInteract;
 
     private void Awake()
     {
@@ -30,6 +33,63 @@ public class PlayerInputHandler : MonoBehaviour
     private void Update()
     {
         gameObject.transform.position = playerController.transform.position;
+    }
+
+    public void OnAButtonPress()
+    {
+        Debug.Log("A Button Pressed");
+        if (canInteract)
+        {
+            Debug.Log("Interacted with " + toInteractWith.name);
+            toInteractWith.GetComponent<GenericInteraction>().InteractedA();
+        }
+    }
+
+    public void OnBButtonPress()
+    {
+        Debug.Log("B Button Pressed");
+        if (canInteract)
+        {
+            Debug.Log("Interacted with " + toInteractWith.name);
+            toInteractWith.GetComponent<GenericInteraction>().InteractedB();
+        }
+    }
+
+    public void OnXButtonPress()
+    {
+        Debug.Log("X Button Pressed");
+        if (canInteract)
+        {
+            Debug.Log("Interacted with " + toInteractWith.name);
+            toInteractWith.GetComponent<GenericInteraction>().InteractedX();
+        }
+    }
+
+    public void OnYButtonPress()
+    {
+        Debug.Log("Y Button Pressed");
+        if (canInteract)
+        {
+            Debug.Log("Interacted with " + toInteractWith.name);
+            toInteractWith.GetComponent<GenericInteraction>().InteractedY();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Interactable")
+        {
+            canInteract = true;
+            toInteractWith = other.gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Interactable")
+        {
+            canInteract = false;
+        }
     }
 
 }
