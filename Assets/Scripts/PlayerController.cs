@@ -68,4 +68,6 @@ public class PlayerController : MonoBehaviour
         //Rotates the Player's mesh towards the 'rotation' variable.
         playerMesh.gameObject.transform.rotation = Quaternion.RotateTowards(playerMesh.gameObject.transform.rotation, rotation, rotateSpeed);
     }
+
+
 }
