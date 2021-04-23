@@ -4,6 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Harmful
+  - PlayerPilot
+  - PlayerScientist
   - Interactable
   layers:
   - Default
