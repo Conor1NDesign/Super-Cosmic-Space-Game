@@ -16,7 +16,7 @@
                 {
                     "name": "InteractionButtons",
                     "type": "Button",
-                    "id": "7d1b68bd-1f92-4667-9d80-bface15e831a",
+                    "id": "173f379f-7ca7-4db1-90cc-b96482468e94",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -91,7 +91,7 @@
                 },
                 {
                     "name": "",
-                    "id": "cf5e2f98-bd3e-4119-96ad-81595b76f5b5",
+                    "id": "e3f39cba-d0a7-472c-adb9-79f15761b495",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
@@ -102,7 +102,7 @@
                 },
                 {
                     "name": "",
-                    "id": "3f4eb2d8-67de-4ba1-8194-6384d6887b65",
+                    "id": "2feb1abb-f962-4bd5-b26e-b750df31de21",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
@@ -113,7 +113,7 @@
                 },
                 {
                     "name": "",
-                    "id": "caf72513-1352-4ea9-bc0c-d55e0cb9c05c",
+                    "id": "1b5193b9-cfae-4aa4-bdca-f094a8fa4714",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
@@ -124,39 +124,12 @@
                 },
                 {
                     "name": "",
-                    "id": "ed6d4c89-7257-4b8a-adff-09073bb929e8",
+                    "id": "334bfa29-2420-411c-befe-2be3fc3809db",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "InteractionButtons",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "GenericInteractions",
-            "id": "f3e57798-3b55-469f-8ac1-74b50c4bfa0b",
-            "actions": [
-                {
-                    "name": "Interact",
-                    "type": "Button",
-                    "id": "8cc4a411-3abe-4978-8d3e-7b44f759e47c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "55179b37-49a6-41cc-b977-b86dfba7a92c",
-                    "path": "<XInputController>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

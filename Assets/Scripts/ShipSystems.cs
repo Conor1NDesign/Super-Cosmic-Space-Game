@@ -33,8 +33,7 @@ public class ShipSystems : MonoBehaviour
 
     [Space(10)]
     private bool beingInteracted = false;
-
-    public Renderer rend;
+    public GameObject testingDinger;
 
 
     public void Awake()
@@ -145,7 +144,9 @@ public class ShipSystems : MonoBehaviour
 
     public void Interaction()
     {
-        rend.material.SetColor("_Color", Random.ColorHSV());
         Debug.Log("Oh golly gee, I've been INTERACTED WITH!");
+        if (testingDinger.activeInHierarchy)
+            testingDinger.SetActive(false);
+        else testingDinger.SetActive(true);
     }
 }

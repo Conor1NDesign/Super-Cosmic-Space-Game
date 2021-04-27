@@ -87,26 +87,11 @@ public class PlayerController : MonoBehaviour
         playerMesh.gameObject.transform.rotation = Quaternion.RotateTowards(playerMesh.gameObject.transform.rotation, rotation, rotateSpeed);
     }
 
-    public void InteractWithSystem(GamepadButton button)
+    public void InteractWithSystem(ShipSystems.buttonOptions button)
     {
         if (canInteract)
         {
-            if (button == GamepadButton.A && requestedButton == ShipSystems.buttonOptions.AButton)
-            {
-                systemInRange.Interaction();
-            }
-
-            else if (button == GamepadButton.B && requestedButton == ShipSystems.buttonOptions.BButton)
-            {
-                systemInRange.Interaction();
-            }
-
-            else if (button == GamepadButton.X && requestedButton == ShipSystems.buttonOptions.XButton)
-            {
-                systemInRange.Interaction();
-            }
-
-            else if (button == GamepadButton.Y && requestedButton == ShipSystems.buttonOptions.YButton)
+            if (button == requestedButton)
             {
                 systemInRange.Interaction();
             }

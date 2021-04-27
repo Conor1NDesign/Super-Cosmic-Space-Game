@@ -31,11 +31,40 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnButtonPush(CallbackContext context)
     {
-        //Start trying to fix shit here!
+        if (playerController != null)
+        {
+            if (context.performed)
+            {
+                if (Gamepad.current.buttonSouth.isPressed)
+                {
+                    var button = ShipSystems.buttonOptions.AButton;
+                    playerController.InteractWithSystem(button);
+                }
+
+                if (Gamepad.current.buttonEast.isPressed)
+                {
+                    var button = ShipSystems.buttonOptions.BButton;
+                    playerController.InteractWithSystem(button);
+                }
+
+                if (Gamepad.current.buttonWest.isPressed)
+                {
+                    var button = ShipSystems.buttonOptions.XButton;
+                    playerController.InteractWithSystem(button);
+                }
+
+                if (Gamepad.current.buttonNorth.isPressed)
+                {
+                    var button = ShipSystems.buttonOptions.YButton;
+                    playerController.InteractWithSystem(button);
+                }
+            }
+        }
     }
 
     private void Update()
     {
         gameObject.transform.position = playerController.transform.position;
+
     }
 }
