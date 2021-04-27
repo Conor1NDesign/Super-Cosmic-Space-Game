@@ -74,8 +74,44 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d213dac1-e492-4e04-ae8a-3bf8f28dd019
     m_ActionName: PlayerMovement/Movement[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dbf18b36-6126-4920-8456-c34a07017d77
+    m_ActionName: StarshipControl/RoatateCamera[/XInputControllerWindows/rightStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 37d44efc-0110-46e8-8222-fd6f058a95c4
+    m_ActionName: StarshipControl/RollDirection[/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 43679f71-5bcd-40dd-8b4a-ae7f68c8e4bd
+    m_ActionName: StarshipControl/ShipSystemsMenu[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6690b656-ee7c-4e2f-bcae-f04205a1e5e8
+    m_ActionName: StarshipControl/LeaveFlightControls[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3e8248ff-aa9b-4a19-8721-8c02c6fd09a8
+    m_ActionName: StarshipControl/ChangeAcceleration[/XInputControllerWindows/leftTrigger,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4236643462237625373}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnButtonPush
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 173f379f-7ca7-4db1-90cc-b96482468e94
+    m_ActionName: PlayerMovement/InteractionButtons[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: PlayerMovement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 5333070094202037456}
@@ -91,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3488a41f653c44fae8e77fcc12d722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toInteractWith: {fileID: 0}
 --- !u!1 &7500538672097552129
 GameObject:
   m_ObjectHideFlags: 0
