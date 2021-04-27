@@ -14,33 +14,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "BButtonPress",
+                    "name": "InteractionButtons",
                     "type": "Button",
-                    "id": "4bf1bc10-43a4-4379-acc1-43fb48acd280",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "XButtonPress",
-                    "type": "Button",
-                    "id": "22d3c0cf-2486-44d9-9d42-2e955047bf23",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "YButtonPress",
-                    "type": "Button",
-                    "id": "c6b4baff-6bf3-499c-a16a-080c58bc539f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "AButtonPress",
-                    "type": "Button",
-                    "id": "7d5dadd6-5254-4e33-bb7a-7db5fbb9662e",
+                    "id": "7d1b68bd-1f92-4667-9d80-bface15e831a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -115,45 +91,45 @@
                 },
                 {
                     "name": "",
-                    "id": "320c73a7-78da-47df-9f1b-17312100248b",
-                    "path": "<XInputController>/buttonEast",
-                    "interactions": "Press",
+                    "id": "cf5e2f98-bd3e-4119-96ad-81595b76f5b5",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "BButtonPress",
+                    "action": "InteractionButtons",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "c6210db7-01d4-40a5-bcbd-2be9ccede00a",
-                    "path": "<XInputController>/buttonWest",
-                    "interactions": "Press",
+                    "id": "3f4eb2d8-67de-4ba1-8194-6384d6887b65",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "XButtonPress",
+                    "action": "InteractionButtons",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "0570029d-9291-42b5-b412-64e246465982",
-                    "path": "<XInputController>/buttonNorth",
-                    "interactions": "Press",
+                    "id": "caf72513-1352-4ea9-bc0c-d55e0cb9c05c",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "YButtonPress",
+                    "action": "InteractionButtons",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "df88688b-a4d2-4475-bfcd-f3f828466184",
-                    "path": "<XInputController>/buttonSouth",
-                    "interactions": "Press",
+                    "id": "ed6d4c89-7257-4b8a-adff-09073bb929e8",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "AButtonPress",
+                    "action": "InteractionButtons",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

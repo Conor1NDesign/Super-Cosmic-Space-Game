@@ -2,28 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
+    public enum playerRole //Enumeration for the 4 main Player Roles.
+    {
+        Pilot,
+        Engineer,
+        Gunner,
+        Scientist
+    };
+
+    [Header("PLAYER ROLE")]
+    public playerRole role;
+
+    [Header("Movement Variables")]
     public float moveSpeed;
-
-    [SerializeField]
-    public GameObject playerCamera;
-
-    [SerializeField]
     public float rotateSpeed;
 
-    [SerializeField]
+    [Header("Object and Component Assignments")]
+    public GameObject playerCamera;
     public GameObject playerMesh;
 
-    [SerializeField]
-    private int playerIndex = 0;
+    [Header("Player Index Number: Player1 = 0, Player2 = 1, Etc.")]
+    public int playerIndex = 0;
 
+    //Variable for the CharacterController component on the Player.
     private CharacterController controller;
 
+    //Variables that handle Joystick Axis input.
     private Vector3 moveDirection = Vector3.zero;
     private Vector2 inputVector = Vector2.zero;
+
+    [Header("Variables Relating to Ship Systems")]
+    //Variables that handle Players interacting with ShipSystems
+    public ShipSystems systemInRange;
+    public bool canInteract;
+    public ShipSystems.buttonOptions requestedButton;     //Enumeration for the 4 main Input buttons on a gamepad, taken from the ShipSystems script.
+
 
     private void Awake()
     {
@@ -69,5 +87,32 @@ public class PlayerController : MonoBehaviour
         playerMesh.gameObject.transform.rotation = Quaternion.RotateTowards(playerMesh.gameObject.transform.rotation, rotation, rotateSpeed);
     }
 
+    public void InteractWithSystem(GamepadButton button)
+    {
+        if (canInteract)
+        {
+            if (button == GamepadButton.A && requestedButton == ShipSystems.buttonOptions.AButton)
+            {
+                systemInRange.Interaction();
+            }
+
+            else if (button == GamepadButton.B && requestedButton == ShipSystems.buttonOptions.BButton)
+            {
+                systemInRange.Interaction();
+            }
+
+            else if (button == GamepadButton.X && requestedButton == ShipSystems.buttonOptions.XButton)
+            {
+                systemInRange.Interaction();
+            }
+
+            else if (button == GamepadButton.Y && requestedButton == ShipSystems.buttonOptions.YButton)
+            {
+                systemInRange.Interaction();
+            }
+            else Debug.Log("Wrong button, dingus!");
+        }
+        else return;
+    }
 
 }
