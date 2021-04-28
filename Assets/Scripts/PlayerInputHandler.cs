@@ -14,7 +14,6 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerController playerController;
     public GameObject toInteractWith;
-
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -29,35 +28,50 @@ public class PlayerInputHandler : MonoBehaviour
             playerController.SetInputVector(context.ReadValue<Vector2>());
     }
 
-    public void OnButtonPush(CallbackContext context)
+    public void OnAButtonPush(CallbackContext context)
     {
         if (playerController != null)
         {
             if (context.performed)
             {
-                if (Gamepad.current.buttonSouth.isPressed)
-                {
-                    var button = ShipSystems.buttonOptions.AButton;
-                    playerController.InteractWithSystem(button);
-                }
+                var button = ShipSystems.buttonOptions.AButton;
+                playerController.InteractWithSystem(button);
+            }
+        }
+    }
 
-                if (Gamepad.current.buttonEast.isPressed)
-                {
-                    var button = ShipSystems.buttonOptions.BButton;
-                    playerController.InteractWithSystem(button);
-                }
+    public void OnBButtonPush(CallbackContext context)
+    {
+        if (playerController != null)
+        {
+            if (context.performed)
+            {
+                var button = ShipSystems.buttonOptions.BButton;
+                playerController.InteractWithSystem(button);
+            }
+        }
+    }
 
-                if (Gamepad.current.buttonWest.isPressed)
-                {
-                    var button = ShipSystems.buttonOptions.XButton;
-                    playerController.InteractWithSystem(button);
-                }
+    public void OnXButtonPush(CallbackContext context)
+    {
+        if (playerController != null)
+        {
+            if (context.performed)
+            {
+                var button = ShipSystems.buttonOptions.XButton;
+                playerController.InteractWithSystem(button);
+            }
+        }
+    }
 
-                if (Gamepad.current.buttonNorth.isPressed)
-                {
-                    var button = ShipSystems.buttonOptions.YButton;
-                    playerController.InteractWithSystem(button);
-                }
+    public void OnYButtonPush(CallbackContext context)
+    {
+        if (playerController != null)
+        {
+            if (context.performed)
+            {
+                var button = ShipSystems.buttonOptions.YButton;
+                playerController.InteractWithSystem(button);
             }
         }
     }
@@ -65,6 +79,5 @@ public class PlayerInputHandler : MonoBehaviour
     private void Update()
     {
         gameObject.transform.position = playerController.transform.position;
-
     }
 }

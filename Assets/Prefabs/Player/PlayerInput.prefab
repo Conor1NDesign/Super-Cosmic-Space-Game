@@ -98,7 +98,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4236643462237625373}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnButtonPush
+        m_MethodName: OnAButtonPush
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -110,6 +110,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 173f379f-7ca7-4db1-90cc-b96482468e94
     m_ActionName: PlayerMovement/InteractionButtons[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4236643462237625373}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnBButtonPush
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 78a31291-c863-4682-8f4d-e2a4e0a5feea
+    m_ActionName: PlayerMovement/B_Button[/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4236643462237625373}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnXButtonPush
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a3646d5b-f8f2-4e0e-b837-b8d30ad3b045
+    m_ActionName: PlayerMovement/X_Button[/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4236643462237625373}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnYButtonPush
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7c300231-6a32-4f68-ae43-3c5e8755819f
+    m_ActionName: PlayerMovement/Y_Button[/XInputControllerWindows/buttonNorth,/XInputControllerWindows/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: PlayerMovement
@@ -138,7 +186,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2801963832411869160}
   - component: {fileID: 5333070094202037456}
-  - component: {fileID: 2116985343798841151}
   - component: {fileID: 5877387451393035235}
   m_Layer: 0
   m_Name: Camera
@@ -204,14 +251,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &2116985343798841151
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7500538672097552129}
-  m_Enabled: 1
 --- !u!114 &5877387451393035235
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -149,4 +149,12 @@ public class ShipSystems : MonoBehaviour
             testingDinger.SetActive(false);
         else testingDinger.SetActive(true);
     }
+
+    public void LifeSupportInteract()
+    {
+        if (interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Pilot)
+        {
+
+        }
+    }
 }

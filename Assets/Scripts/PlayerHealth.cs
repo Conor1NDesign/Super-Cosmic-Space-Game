@@ -4,17 +4,33 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [Header("Health Variables:")]
     public float health;
+    public int maxHealth;
+
+    [Header("Fire Damage:")]
     public float damage;
+
+    [Header("Invincibility After Damage:")]
     public float iframes;
     public float invicibility;
+
+    [Header("Healing From Potions:")]
     public float healingAmount;
 
+    [Header("Potion Prefab and Settings:")]
+    public GameObject potion;
+    public int potionRange;
+    public float potionCurrentCooldown;
+    public float potionThrowCooldown;
+    private GameObject playerMesh;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        playerMesh = gameObject.GetComponent<PlayerController>().playerMesh;
         iframes = 0;
+        potionCurrentCooldown = 0f;
+
     }
 
     // Update is called once per frame
@@ -24,6 +40,12 @@ public class PlayerHealth : MonoBehaviour
         {
             iframes -= Time.deltaTime;
         } 
+
+        if (potionCurrentCooldown >= 0f)
+        {
+            potionCurrentCooldown -= Time.deltaTime;
+        }
+
         
     }
 
@@ -34,16 +56,7 @@ public class PlayerHealth : MonoBehaviour
            health -= damage;
             iframes = invicibility;
             Debug.Log("burned");
-        }
-
-        if (other.tag == "PlayerPilot"|| other.tag == "PlayerEngineer"|| other.tag == "PlayerGunner" && gameObject.tag == "PlayerScientist")
-        {
-           // if (Input.GetKeyDown(KeyCode.E))
-            {
-                PlayerHealth otherHealth = other.gameObject.GetComponent<PlayerHealth>();
-                otherHealth.health += healingAmount;
-            }
-        }
+        } 
 
 
     }
@@ -57,19 +70,26 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("BURNING  ");
         }
 
-        if (other.tag == "PlayerPilot" || other.tag == "PlayerEngineer" || other.tag == "PlayerGunner" && gameObject.tag == "PlayerScientist")
-        {
-           // if (Input.GetKeyDown(KeyCode.E))
-            {
-                PlayerHealth otherHealth = other.gameObject.GetComponent<PlayerHealth>();
-                otherHealth.health += healingAmount;
-            }
-        }
-
     }
 
-    private void HealPlayer()
+    public void HealPlayer()
     {
+
         health += healingAmount;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
+
+    public void ThrowPotion()
+
+    {
+        if (potionCurrentCooldown <= 0f) 
+        {
+            Instantiate(potion, transform.position + (playerMesh.transform.forward * potionRange), playerMesh.transform.rotation);
+            potionCurrentCooldown = potionThrowCooldown;
+        }
+        
     }
 }
