@@ -79,7 +79,10 @@ public class PlayerController : MonoBehaviour
         {
             RotateTowardsMovement(rotation);
         }
-        
+
+        //Keeps the player at y = 0
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+
     }
 
     public void RotateTowardsMovement(Quaternion rotation)

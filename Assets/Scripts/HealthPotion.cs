@@ -5,12 +5,15 @@ using UnityEngine;
 public class HealthPotion : MonoBehaviour
 {
     public int yeetPower = 30;
+    public float lifetimeDuration = 5f;
 
     public void Awake()
     {
         gameObject.GetComponent<Rigidbody>().velocity = transform.forward * yeetPower;
         transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
-        Debug.Log("Attempting to yeet!");
+        //Debug.Log("Attempting to yeet!");
+
+        StartCoroutine(SelfDestroy());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,6 +28,12 @@ public class HealthPotion : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    IEnumerator SelfDestroy()
+    {
+        yield return new WaitForSeconds(lifetimeDuration);
+        Destroy(gameObject);
     }
 
 }
