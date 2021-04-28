@@ -4,24 +4,32 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [Header("Health Variables:")]
     public float health;
     public int maxHealth;
+
+    [Header("Fire Damage:")]
     public float damage;
+
+    [Header("Invincibility After Damage:")]
     public float iframes;
     public float invicibility;
+
+    [Header("Healing From Potions:")]
     public float healingAmount;
-    public bool canHeal;
+
+    [Header("Potion Prefab and Settings:")]
     public GameObject potion;
     public int potionRange;
-    public float potionCooldown;
-    public float healRate;
+    public float potionCurrentCooldown;
+    public float potionThrowCooldown;
+    private GameObject playerMesh;
 
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        playerMesh = gameObject.GetComponent<PlayerController>().playerMesh;
         iframes = 0;
-        potionCooldown = 0f;
+        potionCurrentCooldown = 0f;
 
     }
 
@@ -33,9 +41,9 @@ public class PlayerHealth : MonoBehaviour
             iframes -= Time.deltaTime;
         } 
 
-        if (potionCooldown >= 0f)
+        if (potionCurrentCooldown >= 0f)
         {
-            potionCooldown -= Time.deltaTime;
+            potionCurrentCooldown -= Time.deltaTime;
         }
 
         
@@ -77,10 +85,10 @@ public class PlayerHealth : MonoBehaviour
     public void ThrowPotion()
 
     {
-        if (potionCooldown <= 0f) 
+        if (potionCurrentCooldown <= 0f) 
         {
-            Instantiate(potion, transform.position + (transform.forward * 2), transform.rotation);
-            potionCooldown = healRate;
+            Instantiate(potion, transform.position + (playerMesh.transform.forward * potionRange), playerMesh.transform.rotation);
+            potionCurrentCooldown = potionThrowCooldown;
         }
         
     }

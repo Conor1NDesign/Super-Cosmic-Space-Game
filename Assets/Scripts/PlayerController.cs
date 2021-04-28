@@ -41,11 +41,13 @@ public class PlayerController : MonoBehaviour
     public ShipSystems systemInRange;
     public bool canInteract;
     public ShipSystems.buttonOptions requestedButton;     //Enumeration for the 4 main Input buttons on a gamepad, taken from the ShipSystems script.
+    public PlayerHealth playerHealthScript;
 
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        playerHealthScript = GetComponent<PlayerHealth>();
     }
 
     public int GetPlayerIndex()
@@ -97,7 +99,13 @@ public class PlayerController : MonoBehaviour
             }
             else Debug.Log("Wrong button, dingus!");
         }
-        else return;
+        else if (role == playerRole.Scientist)
+        {
+            if (button == ShipSystems.buttonOptions.BButton)
+            {
+                playerHealthScript.ThrowPotion();
+            }
+        }
     }
 
 }
