@@ -5,16 +5,24 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public float health;
+    public int maxHealth;
     public float damage;
     public float iframes;
     public float invicibility;
     public float healingAmount;
+    public bool canHeal;
+    public GameObject potion;
+    public int potionRange;
+    public float potionCooldown;
+    public float healRate;
 
 
     // Start is called before the first frame update
     void Start()
     {
         iframes = 0;
+        potionCooldown = 0f;
+
     }
 
     // Update is called once per frame
@@ -24,6 +32,12 @@ public class PlayerHealth : MonoBehaviour
         {
             iframes -= Time.deltaTime;
         } 
+
+        if (potionCooldown >= 0f)
+        {
+            potionCooldown -= Time.deltaTime;
+        }
+
         
     }
 
@@ -34,16 +48,7 @@ public class PlayerHealth : MonoBehaviour
            health -= damage;
             iframes = invicibility;
             Debug.Log("burned");
-        }
-
-        if (other.tag == "PlayerPilot"|| other.tag == "PlayerEngineer"|| other.tag == "PlayerGunner" && gameObject.tag == "PlayerScientist")
-        {
-           // if (Input.GetKeyDown(KeyCode.E))
-            {
-                PlayerHealth otherHealth = other.gameObject.GetComponent<PlayerHealth>();
-                otherHealth.health += healingAmount;
-            }
-        }
+        } 
 
 
     }
@@ -57,19 +62,26 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("BURNING  ");
         }
 
-        if (other.tag == "PlayerPilot" || other.tag == "PlayerEngineer" || other.tag == "PlayerGunner" && gameObject.tag == "PlayerScientist")
-        {
-           // if (Input.GetKeyDown(KeyCode.E))
-            {
-                PlayerHealth otherHealth = other.gameObject.GetComponent<PlayerHealth>();
-                otherHealth.health += healingAmount;
-            }
-        }
-
     }
 
-    private void HealPlayer()
+    public void HealPlayer()
     {
+
         health += healingAmount;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
+
+    public void ThrowPotion()
+
+    {
+        if (potionCooldown <= 0f) 
+        {
+            Instantiate(potion, transform.position + (transform.forward * 2), transform.rotation);
+            potionCooldown = healRate;
+        }
+        
     }
 }
