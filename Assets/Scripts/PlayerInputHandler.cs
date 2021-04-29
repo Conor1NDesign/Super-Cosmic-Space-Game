@@ -35,7 +35,7 @@ public class PlayerInputHandler : MonoBehaviour
             if (context.performed)
             {
                 var button = ShipSystems.buttonOptions.AButton;
-                playerController.InteractWithSystem(button);
+                playerController.RecieveButtonInput(button);
             }
         }
     }
@@ -47,7 +47,7 @@ public class PlayerInputHandler : MonoBehaviour
             if (context.performed)
             {
                 var button = ShipSystems.buttonOptions.BButton;
-                playerController.InteractWithSystem(button);
+                playerController.RecieveButtonInput(button);
             }
         }
     }
@@ -59,7 +59,7 @@ public class PlayerInputHandler : MonoBehaviour
             if (context.performed)
             {
                 var button = ShipSystems.buttonOptions.XButton;
-                playerController.InteractWithSystem(button);
+                playerController.RecieveButtonInput(button);
             }
         }
     }
@@ -71,7 +71,7 @@ public class PlayerInputHandler : MonoBehaviour
             if (context.performed)
             {
                 var button = ShipSystems.buttonOptions.YButton;
-                playerController.InteractWithSystem(button);
+                playerController.RecieveButtonInput(button);
             }
         }
     }
