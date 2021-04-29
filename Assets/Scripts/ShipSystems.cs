@@ -17,6 +17,7 @@ public class ShipSystems : MonoBehaviour
     private float repairHp;
     public bool broken;
     public GameObject fire;
+    public GameObject shipSpeedObject;
     public enum buttonOptions //Enumeration for the 4 main Input buttons on a gamepad, plus an option to select one at random.
     {
         AButton,
@@ -73,6 +74,8 @@ public class ShipSystems : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
+
         if (buttons != buttonOptions.AButton)
         {
             Debug.Log("Omaghod guys it's not set to A");
@@ -104,8 +107,6 @@ public class ShipSystems : MonoBehaviour
             broken = true;
         }
         
-        // GET SHIP SPEED VALUE LATER
-        //shipSpeed = getcomponent
 
     }
 
