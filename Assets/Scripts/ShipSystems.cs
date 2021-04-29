@@ -24,16 +24,14 @@ public class ShipSystems : MonoBehaviour
         BButton,
         XButton,
         YButton,
-        Random
+        Random,
+        None
     };
 
     public enum systemType //Enumeration for all of the possible ship systems in the game. Detemines what function will be called upon interaction.
     {
         BridgeControls,
-        CraftingAmmo,
-        CraftingComponents,
-        CraftingFuel,
-        CraftingMedkit,
+        CraftingBench,
         DroneControls,
         EngineeringControls,
         FuelStation,
@@ -47,7 +45,10 @@ public class ShipSystems : MonoBehaviour
     public systemType shipSystem;
 
     [Header("Interaction Buttons:")]
-    public buttonOptions buttons;
+    public buttonOptions button1;
+    public buttonOptions button2;
+    public buttonOptions button3;
+    public buttonOptions button4;
 
     //Boolean values for each PlayerRole, ticked roles can interact with the System this script is attached to.
     [Header("Player Roles Allowed:")]
@@ -68,23 +69,14 @@ public class ShipSystems : MonoBehaviour
     
     public void Awake()
     {
-        //rend = GetComponent<Renderer>();
+
+        impactTimer = Random.Range(shipSpeed, 90f);
     }
 
     // Update is called once per frame
     void Update()
     {
         shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
-
-        if (buttons != buttonOptions.AButton)
-        {
-            Debug.Log("Omaghod guys it's not set to A");
-        }
-
-        if (buttons == buttonOptions.AButton)
-        {
-            Debug.Log("Omaghod guys it's set to A");
-        }
 
         if (impactTimer > 0f)
         {
@@ -181,14 +173,41 @@ public class ShipSystems : MonoBehaviour
     public void WakeSystem(PlayerController playerController)
     {
         //If the interaction button is set to 'Random', randomizes the button for the player.
-        if (buttons == buttonOptions.Random)
+        if (button1 == buttonOptions.Random)
         {
-            buttons = (buttonOptions)Random.Range(0, 4);
-            playerController.requestedButton = buttons;
-            buttons = buttonOptions.Random;
+            button1 = (buttonOptions)Random.Range(0, 4);
+            playerController.requestedButton1 = button1;
+            button1 = buttonOptions.Random;
         }
         else
-            playerController.requestedButton = buttons;
+            playerController.requestedButton1 = button1;
+
+        if (button2 == buttonOptions.Random)
+        {
+            button2 = (buttonOptions)Random.Range(0, 4);
+            playerController.requestedButton2 = button2;
+            button2 = buttonOptions.Random;
+        }
+        else
+            playerController.requestedButton2 = button2;
+
+        if (button3 == buttonOptions.Random)
+        {
+            button3 = (buttonOptions)Random.Range(0, 4);
+            playerController.requestedButton3 = button3;
+            button3 = buttonOptions.Random;
+        }
+        else
+            playerController.requestedButton3 = button3;
+
+        if (button4 == buttonOptions.Random)
+        {
+            button4 = (buttonOptions)Random.Range(0, 4);
+            playerController.requestedButton4 = button4;
+            button4 = buttonOptions.Random;
+        }
+        else
+            playerController.requestedButton4 = button4;
 
         beingInteracted = true;
         playerController.systemInRange = GetComponent<ShipSystems>();
@@ -197,18 +216,34 @@ public class ShipSystems : MonoBehaviour
     }
 
 
-    public void Interaction()
+    public void Interaction(buttonOptions button)
     {
         if (testingDinger.activeInHierarchy)
             testingDinger.SetActive(false);
         else testingDinger.SetActive(true);
 
-        if (shipSystem == systemType.CraftingAmmo || shipSystem == systemType.CraftingComponents || shipSystem == systemType.CraftingFuel || shipSystem == systemType.CraftingMedkit)
+        if (shipSystem == systemType.CraftingBench)
         {
-            interactingPlayer.GetComponent<InventoryManager>().CraftItem(shipSystem);
+            interactingPlayer.GetComponent<InventoryManager>().CraftItem(button);
         }
 
+        if (shipSystem == systemType.BridgeControls)
+        {
+            BridgeControl(button);
+        }
+    }
 
+    public void BridgeControl(buttonOptions button)
+    {
+        if (button == buttonOptions.AButton)
+        {
+            gameObject.GetComponent<ShipSpeed>().Accelerate();
+        }
+
+        if (button == buttonOptions.BButton)
+        {
+            gameObject.GetComponent<ShipSpeed>().Deccelerate();
+        }
     }
 
     public void Impact()
