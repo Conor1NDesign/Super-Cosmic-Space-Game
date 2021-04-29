@@ -315,7 +315,10 @@ MonoBehaviour:
   playerIndex: 0
   systemInRange: {fileID: 0}
   canInteract: 0
-  requestedButton: 0
+  requestedButton1: 0
+  requestedButton2: 0
+  requestedButton3: 0
+  requestedButton4: 0
   playerHealthScript: {fileID: 0}
   throwCurrentCooldown: 0
   throwMaxCooldown: 2
@@ -365,9 +368,6 @@ MonoBehaviour:
   fuel: 0
   medkits: 0
   trashCompactor: {fileID: 0}
-  craftingTable: {fileID: 0}
-  playerInTrigger: {fileID: 0}
-  otherInventory: {fileID: 0}
 --- !u!143 &4671339470369175106
 CharacterController:
   m_ObjectHideFlags: 0
