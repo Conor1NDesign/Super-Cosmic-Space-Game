@@ -16,39 +16,8 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Game Objects and Components")]
     public GameObject trashCompactor;
-    public GameObject craftingTable;
-    public Collider playerInTrigger;
-    public InventoryManager otherInventory;
 
 
-    public void Delivery()
-    {
-        // scientist delivery
-
-
-        if (playerInTrigger.GetComponent<PlayerController>().role == PlayerController.playerRole.Pilot && otherInventory.components < maxItems)
-        {
-            currentItems -= 1;
-            fuel -= 1;
-            otherInventory.currentItems += 1;
-            otherInventory.fuel += 1;
-        }
-        if (playerInTrigger.GetComponent<PlayerController>().role == PlayerController.playerRole.Engineer && otherInventory.components < maxItems)
-        {
-            currentItems -= 1;
-            components -= 1;
-            otherInventory.currentItems += 1;
-            otherInventory.components += 1;
-        }
-        if (playerInTrigger.GetComponent<PlayerController>().role == PlayerController.playerRole.Gunner && otherInventory.components < maxItems)
-        {
-            currentItems -= 1;
-            ammo -= 1;
-            otherInventory.currentItems += 1;
-            otherInventory.ammo += 1;
-        }
-    }
-     
     public void Trash()
     {
             currentItems = 0;
@@ -58,38 +27,31 @@ public class InventoryManager : MonoBehaviour
     }  
 
 
-    public void CraftItem(ShipSystems.systemType systemType)
+    public void CraftItem(ShipSystems.buttonOptions button)
     {
-        if (systemType == ShipSystems.systemType.CraftingAmmo && currentItems < maxItems)
+        if (button == ShipSystems.buttonOptions.XButton && currentItems < maxItems)
         {
             ammo += 1;
             currentItems += 1;
         }
 
-        if (systemType == ShipSystems.systemType.CraftingComponents && currentItems < maxItems)
+        if (button == ShipSystems.buttonOptions.YButton && currentItems < maxItems)
         {
             components += 1;
             currentItems += 1;
         }
 
-        if (systemType == ShipSystems.systemType.CraftingFuel && currentItems < maxItems)
+        if (button == ShipSystems.buttonOptions.AButton && currentItems < maxItems)
         {
             fuel += 1;
             currentItems += 1;
         }
 
-        if (systemType == ShipSystems.systemType.CraftingMedkit && currentItems < maxItems)
+        if (button == ShipSystems.buttonOptions.BButton && currentItems < maxItems)
         {
             medkits += 1;
             currentItems += 1;
         }
+        Debug.Log("Inventory Items: " + currentItems + " Ammo: " + ammo + " Components: " + components + " Fuel: " + fuel + " Medkits: " + medkits);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        playerInTrigger = other;
-       otherInventory = other.gameObject.GetComponent<InventoryManager>();
-
-    }
-
 }
