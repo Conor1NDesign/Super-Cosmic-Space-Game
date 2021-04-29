@@ -23,14 +23,10 @@ public class PlayerHealth : MonoBehaviour
     public int potionRange;
     public float potionCurrentCooldown;
     public float potionThrowCooldown;
-    private GameObject playerMesh;
-
     void Awake()
     {
-        playerMesh = gameObject.GetComponent<PlayerController>().playerMesh;
         iframes = 0;
         potionCurrentCooldown = 0f;
-
     }
 
     // Update is called once per frame
@@ -39,14 +35,7 @@ public class PlayerHealth : MonoBehaviour
         if (iframes >= 0f)
         {
             iframes -= Time.deltaTime;
-        } 
-
-        if (potionCurrentCooldown >= 0f)
-        {
-            potionCurrentCooldown -= Time.deltaTime;
-        }
-
-        
+        }        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -82,14 +71,5 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void ThrowPotion()
 
-    {
-        if (potionCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().medkits > 0) 
-        {
-            Instantiate(potion, transform.position + (playerMesh.transform.forward * potionRange), playerMesh.transform.rotation);
-            potionCurrentCooldown = potionThrowCooldown;
-        }
-        
-    }
 }

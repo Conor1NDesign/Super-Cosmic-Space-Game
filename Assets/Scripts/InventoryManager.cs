@@ -16,39 +16,8 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Game Objects and Components")]
     public GameObject trashCompactor;
-    public GameObject craftingTable;
-    public Collider playerInTrigger;
-    public InventoryManager otherInventory;
 
 
-    public void Delivery()
-    {
-        // scientist delivery
-
-
-        if (playerInTrigger.GetComponent<PlayerController>().role == PlayerController.playerRole.Pilot && otherInventory.components < maxItems)
-        {
-            currentItems -= 1;
-            fuel -= 1;
-            otherInventory.currentItems += 1;
-            otherInventory.fuel += 1;
-        }
-        if (playerInTrigger.GetComponent<PlayerController>().role == PlayerController.playerRole.Engineer && otherInventory.components < maxItems)
-        {
-            currentItems -= 1;
-            components -= 1;
-            otherInventory.currentItems += 1;
-            otherInventory.components += 1;
-        }
-        if (playerInTrigger.GetComponent<PlayerController>().role == PlayerController.playerRole.Gunner && otherInventory.components < maxItems)
-        {
-            currentItems -= 1;
-            ammo -= 1;
-            otherInventory.currentItems += 1;
-            otherInventory.ammo += 1;
-        }
-    }
-     
     public void Trash()
     {
             currentItems = 0;
@@ -83,13 +52,6 @@ public class InventoryManager : MonoBehaviour
             medkits += 1;
             currentItems += 1;
         }
+        Debug.Log("Inventory Items: " + currentItems + " Ammo: " + ammo + " Components: " + components + " Fuel: " + fuel + " Medkits: " + medkits);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        playerInTrigger = other;
-       otherInventory = other.gameObject.GetComponent<InventoryManager>();
-
-    }
-
 }
