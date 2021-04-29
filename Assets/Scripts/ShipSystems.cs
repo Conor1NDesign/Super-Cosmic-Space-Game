@@ -6,14 +6,33 @@ using UnityEngine.UI;
 
 public class ShipSystems : MonoBehaviour
 {
-        public enum buttonOptions //Enumeration for the 4 main Input buttons on a gamepad, plus an option to select one at random.
-        {
-            AButton,
-            BButton,
-            XButton,
-            YButton,
-            Random
-        };
+    public enum buttonOptions //Enumeration for the 4 main Input buttons on a gamepad, plus an option to select one at random.
+    {
+        AButton,
+        BButton,
+        XButton,
+        YButton,
+        Random
+    };
+
+    public enum systemType //Enumeration for all of the possible ship systems in the game. Detemines what function will be called upon interaction.
+    {
+        BridgeControls,
+        CraftingAmmo,
+        CraftingComponents,
+        CraftingFuel,
+        CraftingMedkit,
+        DroneControls,
+        EngineeringControls,
+        FuelStation,
+        GunnerControls,
+        LifeSupport,
+        ResearchTable,
+        TrashBin
+    };
+
+    [Header("System Type:")]
+    public systemType shipSystem;
 
     [Header("Interaction Buttons:")]
     public buttonOptions buttons;
@@ -144,10 +163,16 @@ public class ShipSystems : MonoBehaviour
 
     public void Interaction()
     {
-        Debug.Log("Oh golly gee, I've been INTERACTED WITH!");
         if (testingDinger.activeInHierarchy)
             testingDinger.SetActive(false);
         else testingDinger.SetActive(true);
+
+        if (shipSystem == systemType.CraftingAmmo || shipSystem == systemType.CraftingComponents || shipSystem == systemType.CraftingFuel || shipSystem == systemType.CraftingMedkit)
+        {
+            interactingPlayer.GetComponent<InventoryManager>().CraftItem(shipSystem);
+        }
+
+
     }
 
     public void LifeSupportInteract()

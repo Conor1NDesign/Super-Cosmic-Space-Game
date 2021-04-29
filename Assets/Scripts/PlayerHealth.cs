@@ -85,7 +85,7 @@ public class PlayerHealth : MonoBehaviour
     public void ThrowPotion()
 
     {
-        if (potionCurrentCooldown <= 0f) 
+        if (potionCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().medkits > 0) 
         {
             Instantiate(potion, transform.position + (playerMesh.transform.forward * potionRange), playerMesh.transform.rotation);
             potionCurrentCooldown = potionThrowCooldown;
