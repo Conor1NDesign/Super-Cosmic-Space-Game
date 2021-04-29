@@ -270,10 +270,11 @@ GameObject:
   - component: {fileID: 5006523028989087425}
   - component: {fileID: 6309809208170730702}
   - component: {fileID: 5929047616687516911}
+  - component: {fileID: 312538786694039168}
   - component: {fileID: 4671339470369175106}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,6 +339,27 @@ MonoBehaviour:
   potionRange: 2
   potionCurrentCooldown: 0
   potionThrowCooldown: 5
+--- !u!114 &312538786694039168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6807871483443920493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 387d8dc3070262947b108a9a4a1a6048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxItems: 3
+  currentItems: 0
+  ammo: 0
+  components: 0
+  fuel: 0
+  trashCompactor: {fileID: 0}
+  craftingTable: {fileID: 0}
+  playerInTrigger: {fileID: 0}
+  otherInventory: {fileID: 0}
 --- !u!143 &4671339470369175106
 CharacterController:
   m_ObjectHideFlags: 0
