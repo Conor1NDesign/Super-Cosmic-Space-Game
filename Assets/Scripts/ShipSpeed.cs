@@ -37,19 +37,24 @@ public class ShipSpeed : MonoBehaviour
 
     public void Accelerate()
     {
-        if (!outOfFuel || shipActualSpeed<maxSpeed)
-        { shipActualSpeed += acceleartion; }
+        if (!outOfFuel || shipActualSpeed < maxSpeed)
+        {
+            shipActualSpeed += acceleartion;
+            Debug.Log("Zoom zoom poggy woggy :)");
+        }
     }
 
     public void Deccelerate()
     {
-        if (shipActualSpeed>minSpeed)
-        { shipActualSpeed += decceleration; }
+        if (shipActualSpeed > minSpeed)
+        { 
+            shipActualSpeed += decceleration;
+            Debug.Log("Brakes.");
+        }
     }
 
     public void OutOfFuel()
     {
-
         outOfFuel = true;
     }
 

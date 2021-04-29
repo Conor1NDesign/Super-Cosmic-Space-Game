@@ -27,27 +27,27 @@ public class InventoryManager : MonoBehaviour
     }  
 
 
-    public void CraftItem(ShipSystems.systemType systemType)
+    public void CraftItem(ShipSystems.buttonOptions button)
     {
-        if (systemType == ShipSystems.systemType.CraftingAmmo && currentItems < maxItems)
+        if (button == ShipSystems.buttonOptions.XButton && currentItems < maxItems)
         {
             ammo += 1;
             currentItems += 1;
         }
 
-        if (systemType == ShipSystems.systemType.CraftingComponents && currentItems < maxItems)
+        if (button == ShipSystems.buttonOptions.YButton && currentItems < maxItems)
         {
             components += 1;
             currentItems += 1;
         }
 
-        if (systemType == ShipSystems.systemType.CraftingFuel && currentItems < maxItems)
+        if (button == ShipSystems.buttonOptions.AButton && currentItems < maxItems)
         {
             fuel += 1;
             currentItems += 1;
         }
 
-        if (systemType == ShipSystems.systemType.CraftingMedkit && currentItems < maxItems)
+        if (button == ShipSystems.buttonOptions.BButton && currentItems < maxItems)
         {
             medkits += 1;
             currentItems += 1;

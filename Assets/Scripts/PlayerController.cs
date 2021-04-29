@@ -48,7 +48,12 @@ public class PlayerController : MonoBehaviour
     //Variables that handle Players interacting with ShipSystems
     public ShipSystems systemInRange;
     public bool canInteract;
-    public ShipSystems.buttonOptions requestedButton;     //Enumeration for the 4 main Input buttons on a gamepad, taken from the ShipSystems script.
+    public ShipSystems.buttonOptions requestedButton1;     //Enumeration for the 4 main Input buttons on a gamepad, taken from the ShipSystems script.
+    public ShipSystems.buttonOptions requestedButton2;
+    public ShipSystems.buttonOptions requestedButton3;
+    public ShipSystems.buttonOptions requestedButton4;
+
+
     public PlayerHealth playerHealthScript;
 
     [Header("Throwable Variables")]
@@ -117,9 +122,9 @@ public class PlayerController : MonoBehaviour
     {
         if (canInteract)
         {
-            if (button == requestedButton)
+            if (button == requestedButton1 || button == requestedButton2 || button == requestedButton3 || button == requestedButton4)
             {
-                systemInRange.Interaction();
+                systemInRange.Interaction(button);
             }
             else Debug.Log("Wrong button, dingus!");
         }
