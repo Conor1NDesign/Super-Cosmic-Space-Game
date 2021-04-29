@@ -6,14 +6,45 @@ using UnityEngine.UI;
 
 public class ShipSystems : MonoBehaviour
 {
-        public enum buttonOptions //Enumeration for the 4 main Input buttons on a gamepad, plus an option to select one at random.
-        {
-            AButton,
-            BButton,
-            XButton,
-            YButton,
-            Random
-        };
+    public float systemHp;
+    public float maxSystemHp;
+    private float minSystemHp = 0f;
+    public float impactTimer;
+    public float shipSpeed;
+    public float fireChance;
+    private float fireTrigger;
+    public float maintanenceValue;
+    private float repairHp;
+    public bool broken;
+    public GameObject fire;
+    public GameObject shipSpeedObject;
+    public enum buttonOptions //Enumeration for the 4 main Input buttons on a gamepad, plus an option to select one at random.
+    {
+        AButton,
+        BButton,
+        XButton,
+        YButton,
+        Random
+    };
+
+    public enum systemType //Enumeration for all of the possible ship systems in the game. Detemines what function will be called upon interaction.
+    {
+        BridgeControls,
+        CraftingAmmo,
+        CraftingComponents,
+        CraftingFuel,
+        CraftingMedkit,
+        DroneControls,
+        EngineeringControls,
+        FuelStation,
+        GunnerControls,
+        LifeSupport,
+        ResearchTable,
+        TrashBin
+    };
+
+    [Header("System Type:")]
+    public systemType shipSystem;
 
     [Header("Interaction Buttons:")]
     public buttonOptions buttons;
@@ -34,8 +65,7 @@ public class ShipSystems : MonoBehaviour
     [Space(10)]
     private bool beingInteracted = false;
     public GameObject testingDinger;
-
-
+    
     public void Awake()
     {
         //rend = GetComponent<Renderer>();
@@ -44,6 +74,8 @@ public class ShipSystems : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
+
         if (buttons != buttonOptions.AButton)
         {
             Debug.Log("Omaghod guys it's not set to A");
@@ -53,6 +85,29 @@ public class ShipSystems : MonoBehaviour
         {
             Debug.Log("Omaghod guys it's set to A");
         }
+
+        if (impactTimer > 0f)
+        {
+            impactTimer -= Time.deltaTime;
+        }
+        if (impactTimer == 0f)
+        {
+            Impact();
+        }
+        if (systemHp > maxSystemHp)
+        {
+            systemHp = maxSystemHp;
+        }
+        if (systemHp < minSystemHp)
+        {
+            systemHp =  minSystemHp;
+        }
+        if (systemHp == 0f)
+        {
+            broken = true;
+        }
+        
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -144,17 +199,50 @@ public class ShipSystems : MonoBehaviour
 
     public void Interaction()
     {
-        Debug.Log("Oh golly gee, I've been INTERACTED WITH!");
         if (testingDinger.activeInHierarchy)
             testingDinger.SetActive(false);
         else testingDinger.SetActive(true);
-    }
 
-    public void LifeSupportInteract()
-    {
-        if (interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Pilot)
+        if (shipSystem == systemType.CraftingAmmo || shipSystem == systemType.CraftingComponents || shipSystem == systemType.CraftingFuel || shipSystem == systemType.CraftingMedkit)
         {
-
+            interactingPlayer.GetComponent<InventoryManager>().CraftItem(shipSystem);
         }
+
+
     }
+
+    public void Impact()
+    {
+        systemHp -= (Random.Range(1, shipSpeed));
+        fireChance = (maxSystemHp - systemHp);
+        fireTrigger = Random.Range(1, 101);
+        
+        
+        if (fireChance > fireTrigger)
+        {
+            Fire();
+        }
+
+        impactTimer = (Random.Range(shipSpeed, 120) - shipSpeed);
+
+    }
+    public void Fire()
+    {
+        Instantiate(fire);
+    }
+
+    public void Maintain()
+    {
+        systemHp += maintanenceValue;
+    }
+
+    public void Repair()
+    {
+        if (broken)
+        {
+            systemHp = repairHp;
+        }
+        
+    }
+
 }
