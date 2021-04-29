@@ -6,6 +6,18 @@ using UnityEngine.UI;
 
 public class ShipSystems : MonoBehaviour
 {
+    public float systemHp;
+    public float maxSystemHp;
+    private float minSystemHp = 0f;
+    public float impactTimer;
+    public float shipSpeed;
+    public float fireChance;
+    private float fireTrigger;
+    public float maintanenceValue;
+    private float repairHp;
+    public bool broken;
+    public GameObject fire;
+    public GameObject shipSpeedObject;
     public enum buttonOptions //Enumeration for the 4 main Input buttons on a gamepad, plus an option to select one at random.
     {
         AButton,
@@ -53,8 +65,7 @@ public class ShipSystems : MonoBehaviour
     [Space(10)]
     private bool beingInteracted = false;
     public GameObject testingDinger;
-
-
+    
     public void Awake()
     {
         //rend = GetComponent<Renderer>();
@@ -63,6 +74,8 @@ public class ShipSystems : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
+
         if (buttons != buttonOptions.AButton)
         {
             Debug.Log("Omaghod guys it's not set to A");
@@ -72,6 +85,29 @@ public class ShipSystems : MonoBehaviour
         {
             Debug.Log("Omaghod guys it's set to A");
         }
+
+        if (impactTimer > 0f)
+        {
+            impactTimer -= Time.deltaTime;
+        }
+        if (impactTimer == 0f)
+        {
+            Impact();
+        }
+        if (systemHp > maxSystemHp)
+        {
+            systemHp = maxSystemHp;
+        }
+        if (systemHp < minSystemHp)
+        {
+            systemHp =  minSystemHp;
+        }
+        if (systemHp == 0f)
+        {
+            broken = true;
+        }
+        
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -175,11 +211,38 @@ public class ShipSystems : MonoBehaviour
 
     }
 
-    public void LifeSupportInteract()
+    public void Impact()
     {
-        if (interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Pilot)
+        systemHp -= (Random.Range(1, shipSpeed));
+        fireChance = (maxSystemHp - systemHp);
+        fireTrigger = Random.Range(1, 101);
+        
+        
+        if (fireChance > fireTrigger)
         {
-
+            Fire();
         }
+
+        impactTimer = (Random.Range(shipSpeed, 120) - shipSpeed);
+
     }
+    public void Fire()
+    {
+        Instantiate(fire);
+    }
+
+    public void Maintain()
+    {
+        systemHp += maintanenceValue;
+    }
+
+    public void Repair()
+    {
+        if (broken)
+        {
+            systemHp = repairHp;
+        }
+        
+    }
+
 }
