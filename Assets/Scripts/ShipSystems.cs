@@ -6,17 +6,49 @@ using UnityEngine.UI;
 
 public class ShipSystems : MonoBehaviour
 {
-        public enum buttonOptions //Enumeration for the 4 main Input buttons on a gamepad, plus an option to select one at random.
-        {
-            AButton,
-            BButton,
-            XButton,
-            YButton,
-            Random
-        };
+    public float systemHp;
+    public float maxSystemHp;
+    private float minSystemHp = 0f;
+    public float impactTimer;
+    public float shipSpeed;
+    public float fireChance;
+    private float fireTrigger;
+    public float maintanenceValue;
+    private float repairHp;
+    public bool broken;
+    public GameObject fire;
+    public GameObject shipSpeedObject;
+    public enum buttonOptions //Enumeration for the 4 main Input buttons on a gamepad, plus an option to select one at random.
+    {
+        AButton,
+        BButton,
+        XButton,
+        YButton,
+        Random,
+        None
+    };
+
+    public enum systemType //Enumeration for all of the possible ship systems in the game. Detemines what function will be called upon interaction.
+    {
+        BridgeControls,
+        CraftingBench,
+        DroneControls,
+        EngineeringControls,
+        FuelStation,
+        GunnerControls,
+        LifeSupport,
+        ResearchTable,
+        TrashBin
+    };
+
+    [Header("System Type:")]
+    public systemType shipSystem;
 
     [Header("Interaction Buttons:")]
-    public buttonOptions buttons;
+    public buttonOptions button1;
+    public buttonOptions button2;
+    public buttonOptions button3;
+    public buttonOptions button4;
 
     //Boolean values for each PlayerRole, ticked roles can interact with the System this script is attached to.
     [Header("Player Roles Allowed:")]
@@ -34,25 +66,40 @@ public class ShipSystems : MonoBehaviour
     [Space(10)]
     private bool beingInteracted = false;
     public GameObject testingDinger;
-
-
+    
     public void Awake()
     {
-        //rend = GetComponent<Renderer>();
+
+        impactTimer = Random.Range(shipSpeed, 90f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (buttons != buttonOptions.AButton)
-        {
-            Debug.Log("Omaghod guys it's not set to A");
-        }
+        shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
 
-        if (buttons == buttonOptions.AButton)
+        if (impactTimer > 0f)
         {
-            Debug.Log("Omaghod guys it's set to A");
+            impactTimer -= Time.deltaTime;
         }
+        if (impactTimer == 0f)
+        {
+            Impact();
+        }
+        if (systemHp > maxSystemHp)
+        {
+            systemHp = maxSystemHp;
+        }
+        if (systemHp < minSystemHp)
+        {
+            systemHp =  minSystemHp;
+        }
+        if (systemHp == 0f)
+        {
+            broken = true;
+        }
+        
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -126,14 +173,41 @@ public class ShipSystems : MonoBehaviour
     public void WakeSystem(PlayerController playerController)
     {
         //If the interaction button is set to 'Random', randomizes the button for the player.
-        if (buttons == buttonOptions.Random)
+        if (button1 == buttonOptions.Random)
         {
-            buttons = (buttonOptions)Random.Range(0, 4);
-            playerController.requestedButton = buttons;
-            buttons = buttonOptions.Random;
+            button1 = (buttonOptions)Random.Range(0, 4);
+            playerController.requestedButton1 = button1;
+            button1 = buttonOptions.Random;
         }
         else
-            playerController.requestedButton = buttons;
+            playerController.requestedButton1 = button1;
+
+        if (button2 == buttonOptions.Random)
+        {
+            button2 = (buttonOptions)Random.Range(0, 4);
+            playerController.requestedButton2 = button2;
+            button2 = buttonOptions.Random;
+        }
+        else
+            playerController.requestedButton2 = button2;
+
+        if (button3 == buttonOptions.Random)
+        {
+            button3 = (buttonOptions)Random.Range(0, 4);
+            playerController.requestedButton3 = button3;
+            button3 = buttonOptions.Random;
+        }
+        else
+            playerController.requestedButton3 = button3;
+
+        if (button4 == buttonOptions.Random)
+        {
+            button4 = (buttonOptions)Random.Range(0, 4);
+            playerController.requestedButton4 = button4;
+            button4 = buttonOptions.Random;
+        }
+        else
+            playerController.requestedButton4 = button4;
 
         beingInteracted = true;
         playerController.systemInRange = GetComponent<ShipSystems>();
@@ -142,19 +216,68 @@ public class ShipSystems : MonoBehaviour
     }
 
 
-    public void Interaction()
+    public void Interaction(buttonOptions button)
     {
-        Debug.Log("Oh golly gee, I've been INTERACTED WITH!");
         if (testingDinger.activeInHierarchy)
             testingDinger.SetActive(false);
         else testingDinger.SetActive(true);
-    }
 
-    public void LifeSupportInteract()
-    {
-        if (interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Pilot)
+        if (shipSystem == systemType.CraftingBench)
         {
+            interactingPlayer.GetComponent<InventoryManager>().CraftItem(button);
+        }
 
+        if (shipSystem == systemType.BridgeControls)
+        {
+            BridgeControl(button);
         }
     }
+
+    public void BridgeControl(buttonOptions button)
+    {
+        if (button == buttonOptions.AButton)
+        {
+            gameObject.GetComponent<ShipSpeed>().Accelerate();
+        }
+
+        if (button == buttonOptions.BButton)
+        {
+            gameObject.GetComponent<ShipSpeed>().Deccelerate();
+        }
+    }
+
+    public void Impact()
+    {
+        systemHp -= (Random.Range(1, shipSpeed));
+        fireChance = (maxSystemHp - systemHp);
+        fireTrigger = Random.Range(1, 101);
+        
+        
+        if (fireChance > fireTrigger)
+        {
+            Fire();
+        }
+
+        impactTimer = (Random.Range(shipSpeed, 120) - shipSpeed);
+
+    }
+    public void Fire()
+    {
+        Instantiate(fire);
+    }
+
+    public void Maintain()
+    {
+        systemHp += maintanenceValue;
+    }
+
+    public void Repair()
+    {
+        if (broken)
+        {
+            systemHp = repairHp;
+        }
+        
+    }
+
 }

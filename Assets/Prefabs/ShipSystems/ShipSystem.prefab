@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4467992042581336954}
   - component: {fileID: 4467992042581336949}
   m_Layer: 0
-  m_Name: Test_ShipSystem
+  m_Name: ShipSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,11 +74,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731b82f11d128564ea93988b8bf5ec0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons: 4
-  pilotAllowed: 1
+  systemHp: 0
+  maxSystemHp: 0
+  impactTimer: 0
+  shipSpeed: 0
+  fireChance: 0
+  maintanenceValue: 0
+  broken: 0
+  fire: {fileID: 6577715077530141215, guid: 0238d56f79fca594fae00ce6d7ac4d96, type: 3}
+  shipSpeedObject: {fileID: 0}
+  shipSystem: 1
+  button1: 0
+  button2: 1
+  button3: 2
+  button4: 3
+  pilotAllowed: 0
   engineerAllowed: 0
   gunnerAllowed: 0
-  scientistAllowed: 0
+  scientistAllowed: 1
   buttonPrompt: {fileID: 0}
   interactingPlayer: {fileID: 0}
   testingDinger: {fileID: 4467992043958602267}
