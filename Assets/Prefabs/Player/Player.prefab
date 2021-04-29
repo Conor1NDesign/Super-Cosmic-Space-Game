@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6957f07bb35a6ce47907e359b8f2102b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  role: 3
+  role: 0
   moveSpeed: 8
   rotateSpeed: 2
   playerCamera: {fileID: 68077706}
@@ -315,7 +315,10 @@ MonoBehaviour:
   playerIndex: 0
   systemInRange: {fileID: 0}
   canInteract: 0
-  requestedButton: 0
+  requestedButton1: 0
+  requestedButton2: 0
+  requestedButton3: 0
+  requestedButton4: 0
   playerHealthScript: {fileID: 0}
   throwCurrentCooldown: 0
   throwMaxCooldown: 2
@@ -340,12 +343,12 @@ MonoBehaviour:
   maxHealth: 100
   damage: 5
   iframes: 0
-  invicibility: 30
+  invicibility: 1
   healingAmount: 40
   potion: {fileID: 5467165016079118408, guid: 09bc35b2fbab11243be96b34671d2072, type: 3}
   potionRange: 2
   potionCurrentCooldown: 0
-  potionThrowCooldown: 5
+  potionThrowCooldown: 2
 --- !u!114 &312538786694039168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,9 +368,6 @@ MonoBehaviour:
   fuel: 0
   medkits: 0
   trashCompactor: {fileID: 0}
-  craftingTable: {fileID: 0}
-  playerInTrigger: {fileID: 0}
-  otherInventory: {fileID: 0}
 --- !u!143 &4671339470369175106
 CharacterController:
   m_ObjectHideFlags: 0

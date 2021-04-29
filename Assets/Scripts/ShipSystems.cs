@@ -14,7 +14,7 @@ public class ShipSystems : MonoBehaviour
     public float fireChance;
     private float fireTrigger;
     public float maintanenceValue;
-    private float repairHp;
+    private float repairHp = 30f;
     public bool broken;
     public GameObject fire;
     public GameObject shipSpeedObject;
@@ -66,11 +66,14 @@ public class ShipSystems : MonoBehaviour
     [Space(10)]
     private bool beingInteracted = false;
     public GameObject testingDinger;
-    
+
+    [Header("Fire!")]
+    public float maxFireChance;
+
     public void Awake()
     {
-
-        impactTimer = Random.Range(shipSpeed, 90f);
+        systemHp = maxSystemHp;
+        impactTimer = Random.Range(shipSpeed, 40f);
     }
 
     // Update is called once per frame
@@ -80,11 +83,12 @@ public class ShipSystems : MonoBehaviour
 
         if (impactTimer > 0f)
         {
-            impactTimer -= Time.deltaTime;
+            impactTimer -= (Time.deltaTime * (shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed / 10));
         }
-        if (impactTimer == 0f)
+        if (impactTimer <= 0f)
         {
             Impact();
+            impactTimer = (Random.Range(40, 121));
         }
         if (systemHp > maxSystemHp)
         {
@@ -248,17 +252,21 @@ public class ShipSystems : MonoBehaviour
 
     public void Impact()
     {
-        systemHp -= (Random.Range(1, shipSpeed));
+        systemHp -= (Random.Range(0, (shipSpeed / 2)));
+        if (systemHp <= 0)
+            systemHp = 0;
         fireChance = (maxSystemHp - systemHp);
         fireTrigger = Random.Range(1, 101);
-        
+
+        if (fireChance > maxFireChance)
+            fireChance = maxFireChance;
         
         if (fireChance > fireTrigger)
         {
             Fire();
         }
 
-        impactTimer = (Random.Range(shipSpeed, 120) - shipSpeed);
+        //impactTimer = (Random.Range(shipSpeed, 121) - shipSpeed);
 
     }
     public void Fire()
