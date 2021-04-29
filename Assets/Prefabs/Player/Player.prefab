@@ -317,6 +317,13 @@ MonoBehaviour:
   canInteract: 0
   requestedButton: 0
   playerHealthScript: {fileID: 0}
+  throwCurrentCooldown: 0
+  throwMaxCooldown: 2
+  throwableSpawnDistance: 1
+  ammoPrefab: {fileID: 5467165016079118408, guid: c49da3a2da007684ebb47f31fadc8df1, type: 3}
+  componentPrefab: {fileID: 5467165016079118408, guid: 862d9acb7b3f4474c8058f6ae62b0fb3, type: 3}
+  fuelPrefab: {fileID: 5467165016079118408, guid: 3af8b8520b1651f4da4811232b2d0eca, type: 3}
+  medkitPrefab: {fileID: 5467165016079118408, guid: 09bc35b2fbab11243be96b34671d2072, type: 3}
 --- !u!114 &5929047616687516911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +363,7 @@ MonoBehaviour:
   ammo: 0
   components: 0
   fuel: 0
+  medkits: 0
   trashCompactor: {fileID: 0}
   craftingTable: {fileID: 0}
   playerInTrigger: {fileID: 0}

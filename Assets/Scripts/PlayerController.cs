@@ -15,6 +15,14 @@ public class PlayerController : MonoBehaviour
         Scientist
     };
 
+    public enum craftableItems
+    {
+        Ammo,
+        Components,
+        Fuel,
+        Medkits
+    };
+
     [Header("PLAYER ROLE")]
     public playerRole role;
 
@@ -43,6 +51,14 @@ public class PlayerController : MonoBehaviour
     public ShipSystems.buttonOptions requestedButton;     //Enumeration for the 4 main Input buttons on a gamepad, taken from the ShipSystems script.
     public PlayerHealth playerHealthScript;
 
+    [Header("Throwable Variables")]
+    public float throwCurrentCooldown;
+    public float throwMaxCooldown;
+    public float throwableSpawnDistance; //Distance that the throwable object spawns in front of the player.
+    public GameObject ammoPrefab;
+    public GameObject componentPrefab;
+    public GameObject fuelPrefab;
+    public GameObject medkitPrefab;
 
     private void Awake()
     {
@@ -83,6 +99,11 @@ public class PlayerController : MonoBehaviour
         //Keeps the player at y = 0
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
+        //Cooldown timer ticks down
+        if (throwCurrentCooldown >= 0f)
+        {
+            throwCurrentCooldown -= Time.deltaTime;
+        }
     }
 
     public void RotateTowardsMovement(Quaternion rotation)
@@ -92,7 +113,7 @@ public class PlayerController : MonoBehaviour
         playerMesh.gameObject.transform.rotation = Quaternion.RotateTowards(playerMesh.gameObject.transform.rotation, rotation, rotateSpeed);
     }
 
-    public void InteractWithSystem(ShipSystems.buttonOptions button)
+    public void RecieveButtonInput(ShipSystems.buttonOptions button)
     {
         if (canInteract)
         {
@@ -106,9 +127,61 @@ public class PlayerController : MonoBehaviour
         {
             if (button == ShipSystems.buttonOptions.BButton)
             {
-                playerHealthScript.ThrowPotion();
+                ThrowItem(craftableItems.Medkits);
+            }
+
+            if (button == ShipSystems.buttonOptions.AButton)
+            {
+                ThrowItem(craftableItems.Fuel);
+            }
+
+            if (button == ShipSystems.buttonOptions.XButton)
+            {
+                ThrowItem(craftableItems.Ammo);
+            }
+
+            if (button == ShipSystems.buttonOptions.YButton)
+            {
+                ThrowItem(craftableItems.Components);
             }
         }
+    }
+
+    public void ThrowItem(craftableItems thrownItem)
+
+    {
+        if (thrownItem == craftableItems.Medkits && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().medkits > 0)
+        {
+            Instantiate(medkitPrefab, transform.position + (playerMesh.transform.forward * throwableSpawnDistance), playerMesh.transform.rotation);
+            throwCurrentCooldown = throwMaxCooldown;
+            gameObject.GetComponent<InventoryManager>().medkits -= 1;
+            gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+        }
+
+        if (thrownItem == craftableItems.Fuel && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().fuel > 0)
+        {
+            Instantiate(fuelPrefab, transform.position + (playerMesh.transform.forward * throwableSpawnDistance), playerMesh.transform.rotation);
+            throwCurrentCooldown = throwMaxCooldown;
+            gameObject.GetComponent<InventoryManager>().fuel -= 1;
+            gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+        }
+
+        if (thrownItem == craftableItems.Ammo && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().ammo > 0)
+        {
+            Instantiate(ammoPrefab, transform.position + (playerMesh.transform.forward * throwableSpawnDistance), playerMesh.transform.rotation);
+            throwCurrentCooldown = throwMaxCooldown;
+            gameObject.GetComponent<InventoryManager>().ammo -= 1;
+            gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+        }
+
+        if (thrownItem == craftableItems.Components && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().components > 0)
+        {
+            Instantiate(componentPrefab, transform.position + (playerMesh.transform.forward * throwableSpawnDistance), playerMesh.transform.rotation);
+            throwCurrentCooldown = throwMaxCooldown;
+            gameObject.GetComponent<InventoryManager>().components -= 1;
+            gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+        }
+
     }
 
 }
