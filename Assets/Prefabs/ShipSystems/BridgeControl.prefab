@@ -96,6 +96,7 @@ MonoBehaviour:
   buttonPrompt: {fileID: 0}
   interactingPlayer: {fileID: 0}
   testingDinger: {fileID: 4467992043958602267}
+  maxFireChance: 80
 --- !u!114 &-7379329018444603502
 MonoBehaviour:
   m_ObjectHideFlags: 0

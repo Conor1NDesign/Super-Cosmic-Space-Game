@@ -11,9 +11,9 @@ public class ShipSpeed : MonoBehaviour
     public float maxSpeed;
     public float minSpeed;
 
-    void Start()
+    public void Awake()
     {
-        
+        shipActualSpeed = minSpeed;
     }
 
     // Update is called once per frame
@@ -48,7 +48,7 @@ public class ShipSpeed : MonoBehaviour
     {
         if (shipActualSpeed > minSpeed)
         { 
-            shipActualSpeed += decceleration;
+            shipActualSpeed -= decceleration;
             Debug.Log("Brakes.");
         }
     }
