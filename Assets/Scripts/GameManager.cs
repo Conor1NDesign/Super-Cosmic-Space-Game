@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public float distance;
-    public float shipSpeed;
+    private float shipSpeed;
     public GameObject shipSpeedObject;
     public GameObject winText;
     public GameObject loseText;
@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
-        distance -= shipSpeed * Time.deltaTime;
+        distance -= (shipSpeed / 10 * Time.deltaTime);
+        
 
         if (distance == 0f)
         {
