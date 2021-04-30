@@ -76,6 +76,7 @@ public class ShipSystems : MonoBehaviour
     {
         systemHp = maxSystemHp;
         impactTimer = Random.Range(shipSpeed, 40f);
+        shipSpeedObject = GameObject.Find("BridgeControl");
     }
 
     // Update is called once per frame
@@ -240,7 +241,7 @@ public class ShipSystems : MonoBehaviour
             testingDinger.SetActive(false);
         else testingDinger.SetActive(true);
 
-        if (shipSystem == systemType.CraftingBench)
+        if (shipSystem == systemType.CraftingBench && interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Scientist)
         {
             interactingPlayer.GetComponent<InventoryManager>().CraftItem(button);
         }
@@ -258,6 +259,14 @@ public class ShipSystems : MonoBehaviour
         if (interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Engineer && !broken && button == buttonOptions.BButton)
         {
             Maintain();
+        }
+
+        if (shipSystem == systemType.FuelStation && interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Pilot 
+            && interactingPlayer.GetComponent<InventoryManager>().currentItems > 0)
+        {
+            gameObject.GetComponent<Fuel>().Refuel();
+            interactingPlayer.GetComponent<InventoryManager>().currentItems -= 1;
+            interactingPlayer.GetComponent<InventoryManager>().fuel -= 1;
         }
     }
 
