@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
             GameWin();
         }
 
-        if (engineerHp == 0f || pilotHp == 0f || scientistHp == 0f || gunnerHp == 0)
+        if (engineerHp == 0f && pilotHp == 0f && scientistHp == 0f && gunnerHp == 0)
         {
             GameLoss();
         }
