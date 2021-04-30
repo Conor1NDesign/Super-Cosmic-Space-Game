@@ -14,12 +14,16 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerController playerController;
     public GameObject toInteractWith;
+
+    private float playerMoveSpeed;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         var playerControllers = FindObjectsOfType<PlayerController>();
         var index = playerInput.playerIndex;
         playerController = playerControllers.FirstOrDefault(m => m.GetPlayerIndex() == index);
+        playerMoveSpeed = playerController.moveSpeed;
     }
 
     public void OnMove(CallbackContext context)
@@ -76,7 +80,26 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void OnRightTriggerPress(CallbackContext context)
+    {
+        if (playerController != null)
+        {
+            if (context.performed)
+            {
+                playerController.moveSpeed = 0;
+                playerController.extinguisherObject.SetActive(true);
+            }
+
+            if (context.canceled)
+            {
+                playerController.moveSpeed = playerMoveSpeed;
+                playerController.extinguisherObject.SetActive(false);
+            }
+        }
+    }
+
+
+    public void Update()
     {
         gameObject.transform.position = playerController.transform.position;
     }
