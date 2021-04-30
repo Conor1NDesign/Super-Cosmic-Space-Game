@@ -13544,7 +13544,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1596
+  m_Name: pb_Mesh-775874
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15709,10 +15709,6 @@ MonoBehaviour:
   pilot: {fileID: 1690148323}
   scientist: {fileID: 1361374032}
   gunner: {fileID: 1742661559}
-  engineerHp: 0
-  pilotHp: 0
-  scientistHp: 0
-  gunnerHp: 0
 --- !u!4 &1163466203
 Transform:
   m_ObjectHideFlags: 0
@@ -19204,7 +19200,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1676
+  m_Name: pb_Mesh-775978
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19652,7 +19648,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1770
+  m_Name: pb_Mesh-776104
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19816,7 +19812,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1722
+  m_Name: pb_Mesh-776040
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
