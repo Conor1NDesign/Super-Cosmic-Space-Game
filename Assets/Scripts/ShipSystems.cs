@@ -103,6 +103,18 @@ public class ShipSystems : MonoBehaviour
         if (systemHp == 0f)
         {
             broken = true;
+            /*if (shipSystem == systemType.BridgeControls)
+            {
+                gameObject.GetComponent<GameManager>().BrokenNav();
+            }
+            if (shipSystem == systemType.EngineeringControls)
+            {
+                gameObject.GetComponent<ShipSpeed>().BrokenEngine();
+            }
+            if (shipSystem == systemType.LifeSupport)
+            {
+                gameObject.GetComponent<PlayerHealth>().LifeSupportBroke();
+            }*/
         }
         
 
@@ -233,9 +245,19 @@ public class ShipSystems : MonoBehaviour
             interactingPlayer.GetComponent<InventoryManager>().CraftItem(button);
         }
 
-        if (shipSystem == systemType.BridgeControls)
+        if (shipSystem == systemType.BridgeControls && interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Pilot)
         {
             BridgeControl(button);
+        }
+
+        if (interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Engineer && broken && button == buttonOptions.BButton)
+        {
+            Repair();
+        }
+
+        if (interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Engineer && !broken && button == buttonOptions.BButton)
+        {
+            Maintain();
         }
     }
 
@@ -281,16 +303,17 @@ public class ShipSystems : MonoBehaviour
 
     public void Maintain()
     {
-        systemHp += maintanenceValue;
+        if (interactingPlayer.GetComponent<InventoryManager>().currentItems > 0 && systemHp < 100)
+        {
+            systemHp += maintanenceValue;
+            interactingPlayer.GetComponent<InventoryManager>().currentItems -= 1;
+        }
     }
 
     public void Repair()
     {
-        if (broken)
-        {
-            systemHp = repairHp;
-        }
-        
+        systemHp = repairHp;
+        broken = false;
     }
 
 }
