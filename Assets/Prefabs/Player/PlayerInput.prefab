@@ -158,6 +158,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7c300231-6a32-4f68-ae43-3c5e8755819f
     m_ActionName: PlayerMovement/Y_Button[/XInputControllerWindows/buttonNorth,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4236643462237625373}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnRightTriggerPress
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 036c98a7-2971-4c30-a093-a5726d31918c
+    m_ActionName: PlayerMovement/Right_Trigger[/XInputControllerWindows/rightTrigger,/XInputControllerWindows/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: PlayerMovement

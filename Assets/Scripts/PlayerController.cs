@@ -65,6 +65,9 @@ public class PlayerController : MonoBehaviour
     public GameObject fuelPrefab;
     public GameObject medkitPrefab;
 
+    [Header("Fire Extinguisher Object")]
+    public GameObject extinguisherObject;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -93,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(moveDirection * Time.deltaTime);
         
-        var rotation = Quaternion.LookRotation(moveDirection);
+        var rotation = Quaternion.LookRotation(rotationVector);
 
         //Checks if there is still input coming from the player. This prevents the mesh from rotating back to Y = 0 when there's no input.
         if (moveDirection.magnitude != 0)

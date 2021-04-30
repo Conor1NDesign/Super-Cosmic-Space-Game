@@ -1,64 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1361571129569576715
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1033058676655262228}
-  - component: {fileID: 2247411287058357791}
-  - component: {fileID: 6394250570792056162}
-  m_Layer: 0
-  m_Name: FireZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1033058676655262228
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361571129569576715}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4467992042581336952}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2247411287058357791
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361571129569576715}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &6394250570792056162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361571129569576715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1851eee9aab02074dae44b3551a53bdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerColour: {r: 1, g: 0, b: 0, a: 0.47058824}
-  triggerWireColour: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &4467992042581336948
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,9 +12,8 @@ GameObject:
   - component: {fileID: 4467992042581336955}
   - component: {fileID: 4467992042581336954}
   - component: {fileID: 4467992042581336949}
-  - component: {fileID: -7379329018444603502}
   m_Layer: 0
-  m_Name: BridgeControl
+  m_Name: CraftingBench
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,8 +32,8 @@ Transform:
   m_Children:
   - {fileID: 4467992043918475672}
   - {fileID: 4467992043958602268}
-  - {fileID: 1033058676655262228}
-  - {fileID: 5891611442092323244}
+  - {fileID: 4329218853761283177}
+  - {fileID: 1930535074645042208}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -137,45 +77,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   systemHp: 0
-  maxSystemHp: 100
+  maxSystemHp: 0
   impactTimer: 0
   shipSpeed: 0
-  maintanenceValue: 40
+  maintanenceValue: 0
   broken: 0
-  shipSpeedObject: {fileID: 4467992042581336948}
-  shipSystem: 0
+  shipSpeedObject: {fileID: 0}
+  shipSystem: 1
   button1: 0
   button2: 1
-  button3: 5
-  button4: 5
-  pilotAllowed: 1
+  button3: 2
+  button4: 3
+  pilotAllowed: 0
   engineerAllowed: 0
   gunnerAllowed: 0
-  scientistAllowed: 0
+  scientistAllowed: 1
   buttonPrompt: {fileID: 0}
   interactingPlayer: {fileID: 0}
   testingDinger: {fileID: 4467992043958602267}
   maxFireChance: 80
   fireChance: 0
   fire: {fileID: 6577715077530141215, guid: 0238d56f79fca594fae00ce6d7ac4d96, type: 3}
-  fireSpawnZone: {fileID: 1361571129569576715}
---- !u!114 &-7379329018444603502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4467992042581336948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18546fbe3985ef04da25869067f0b230, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shipActualSpeed: 0
-  acceleartion: 10
-  decceleration: 10
-  maxSpeed: 100
-  minSpeed: 10
+  fireSpawnZone: {fileID: 0}
 --- !u!1 &4467992043918475675
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,7 +725,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!1 &6172382072045825049
+--- !u!1 &6314836435526041112
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -810,9 +733,68 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5891611442092323244}
-  - component: {fileID: 2924204584693586620}
-  - component: {fileID: 7573563543135778868}
+  - component: {fileID: 4329218853761283177}
+  - component: {fileID: 8956627715362290972}
+  - component: {fileID: 8093287299208052148}
+  m_Layer: 0
+  m_Name: FireZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4329218853761283177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6314836435526041112}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4467992042581336952}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8956627715362290972
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6314836435526041112}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &8093287299208052148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6314836435526041112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1851eee9aab02074dae44b3551a53bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerColour: {r: 1, g: 0, b: 0, a: 0.11764706}
+  triggerWireColour: {r: 1, g: 0, b: 0, a: 1}
+--- !u!1 &6684379132868853449
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1930535074645042208}
+  - component: {fileID: 5142911783699885328}
+  - component: {fileID: 1514375973430547720}
   m_Layer: 0
   m_Name: SystemNameText
   m_TagString: Untagged
@@ -820,13 +802,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5891611442092323244
+--- !u!4 &1930535074645042208
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6172382072045825049}
+  m_GameObject: {fileID: 6684379132868853449}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2.5, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -834,13 +816,13 @@ Transform:
   m_Father: {fileID: 4467992042581336952}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &2924204584693586620
+--- !u!23 &5142911783699885328
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6172382072045825049}
+  m_GameObject: {fileID: 6684379132868853449}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -875,15 +857,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!102 &7573563543135778868
+--- !u!102 &1514375973430547720
 TextMesh:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6172382072045825049}
-  m_Text: Bridge
+  m_GameObject: {fileID: 6684379132868853449}
+  m_Text: Crafting Bench
   m_OffsetZ: 0
   m_CharacterSize: 0.1
   m_LineSpacing: 1
