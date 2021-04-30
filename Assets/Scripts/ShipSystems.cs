@@ -11,12 +11,10 @@ public class ShipSystems : MonoBehaviour
     private float minSystemHp = 0f;
     public float impactTimer;
     public float shipSpeed;
-    public float fireChance;
-    private float fireTrigger;
     public float maintanenceValue;
     private float repairHp = 30f;
     public bool broken;
-    public GameObject fire;
+    
     public GameObject shipSpeedObject;
     public enum buttonOptions //Enumeration for the 4 main Input buttons on a gamepad, plus an option to select one at random.
     {
@@ -69,6 +67,10 @@ public class ShipSystems : MonoBehaviour
 
     [Header("Fire!")]
     public float maxFireChance;
+    public float fireChance;
+    private float fireTrigger;
+    public GameObject fire;
+    public GameObject fireSpawnZone;
 
     public void Awake()
     {
@@ -271,7 +273,10 @@ public class ShipSystems : MonoBehaviour
     }
     public void Fire()
     {
-        Instantiate(fire);
+        var fireSpawnRange = new Vector3(Random.Range(-fireSpawnZone.transform.localScale.x / 2, fireSpawnZone.transform.localScale.z / 2), 0, 
+            Random.Range(-fireSpawnZone.transform.localScale.z / 2, fireSpawnZone.transform.localScale.z / 2));
+        var fireSpawnPoint = fireSpawnZone.transform.position + fireSpawnRange;
+        Instantiate(fire, fireSpawnPoint, Quaternion.identity);
     }
 
     public void Maintain()
