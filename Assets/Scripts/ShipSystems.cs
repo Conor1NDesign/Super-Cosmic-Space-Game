@@ -304,7 +304,7 @@ public class ShipSystems : MonoBehaviour
     }
     public void Fire()
     {
-        var fireSpawnRange = new Vector3(Random.Range(-fireSpawnZone.transform.localScale.x / 2, fireSpawnZone.transform.localScale.z / 2), 0, 
+        var fireSpawnRange = new Vector3(Random.Range(-fireSpawnZone.transform.localScale.x / 2, fireSpawnZone.transform.localScale.x / 2), 0, 
             Random.Range(-fireSpawnZone.transform.localScale.z / 2, fireSpawnZone.transform.localScale.z / 2));
         var fireSpawnPoint = fireSpawnZone.transform.position + fireSpawnRange;
         Instantiate(fire, fireSpawnPoint, Quaternion.identity);
