@@ -9,7 +9,9 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth;
 
     [Header("Fire Damage:")]
-    public float damage;
+    public float fireDamage;
+    public float suffocationDamage;
+    public bool suffocating;
 
     [Header("Invincibility After Damage:")]
     public float iframes;
@@ -18,15 +20,13 @@ public class PlayerHealth : MonoBehaviour
     [Header("Healing From Potions:")]
     public float healingAmount;
 
-    [Header("Potion Prefab and Settings:")]
-    public GameObject potion;
-    public int potionRange;
-    public float potionCurrentCooldown;
-    public float potionThrowCooldown;
+    
+    
+
     void Awake()
     {
         iframes = 0;
-        potionCurrentCooldown = 0f;
+
     }
 
     // Update is called once per frame
@@ -35,14 +35,25 @@ public class PlayerHealth : MonoBehaviour
         if (iframes >= 0f)
         {
             iframes -= Time.deltaTime;
-        }        
+        }    
+        
+        if (suffocating)
+        {
+            health -= ( suffocationDamage * Time.deltaTime);
+        }
+
+        if (health <= 0f)
+        {
+            gameObject.SetActive(false);
+
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Harmful" && iframes <= 0f)
         {
-           health -= damage;
+           health -= fireDamage;
             iframes = invicibility;
             Debug.Log("burned");
         } 
@@ -54,7 +65,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.tag == "Harmful" && iframes <= 0f)
         {
-            health -= damage;
+            health -= fireDamage;
             iframes = invicibility;
             Debug.Log("BURNING  ");
         }
@@ -69,6 +80,16 @@ public class PlayerHealth : MonoBehaviour
         {
             health = maxHealth;
         }
+    }
+
+    public void LifeSupportBroke()
+    {
+        suffocating = true;
+    }
+
+    public void Repair()
+    {
+        suffocating = false;
     }
 
 

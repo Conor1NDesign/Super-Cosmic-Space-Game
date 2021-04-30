@@ -10,6 +10,7 @@ public class ShipSpeed : MonoBehaviour
     private bool outOfFuel;
     public float maxSpeed;
     public float minSpeed;
+    private bool engineBroken;
 
     public void Awake()
     {
@@ -19,7 +20,7 @@ public class ShipSpeed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (outOfFuel)
+        if (outOfFuel || engineBroken )
         {
           shipActualSpeed -= Time.deltaTime;
         }
@@ -37,7 +38,7 @@ public class ShipSpeed : MonoBehaviour
 
     public void Accelerate()
     {
-        if (!outOfFuel || shipActualSpeed < maxSpeed)
+        if (!outOfFuel && shipActualSpeed < maxSpeed)
         {
             shipActualSpeed += acceleartion;
             Debug.Log("Zoom zoom poggy woggy :)");
@@ -56,6 +57,21 @@ public class ShipSpeed : MonoBehaviour
     public void OutOfFuel()
     {
         outOfFuel = true;
+    }
+
+    public void BrokenEngine()
+    {
+        engineBroken = true;
+    }
+
+    public void Refuel()
+    {
+        outOfFuel = false;
+    }
+
+    public void Repair()
+    {
+        engineBroken = false;
     }
 
 }

@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour
     public GameObject pilot;
     public GameObject scientist;
     public GameObject gunner;
-    public float engineerHp;
-    public float pilotHp;
-    public float scientistHp;
-    public float gunnerHp;
+    private float engineerHp;
+    private float pilotHp;
+    private float scientistHp;
+    private float gunnerHp;
+    private bool navBroken;
+
     // Update is called once per frame
     private void Awake()
     {
@@ -28,9 +30,18 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
-        distance -= (shipSpeed / 10 * Time.deltaTime);
-        
+        if (!navBroken)
+        {
+            shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
+            distance += (shipSpeed / 20 * Time.deltaTime);
+        }
+
+        else
+        {
+            shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
+            distance -= (shipSpeed / 10 * Time.deltaTime);
+        }
+
 
         if (distance == 0f)
         {
@@ -51,5 +62,15 @@ public class GameManager : MonoBehaviour
     private void GameLoss()
     {
         loseText.SetActive(true);
+    }
+
+    public void BrokenNav()
+    {
+        navBroken = true;
+    }
+
+    public void Repair()
+    {
+        navBroken = false;
     }
 }

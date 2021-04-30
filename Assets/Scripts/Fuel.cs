@@ -41,6 +41,7 @@ public class Fuel : MonoBehaviour
     public void Refuel()
     {
         currentFuel += refuelValue;
+        bridgeControlSystem.GetComponent<ShipSpeed>().Refuel();
     }
     
 }
