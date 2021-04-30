@@ -20,9 +20,9 @@ public class ShipSpeed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (outOfFuel || engineBroken )
+        if (outOfFuel || engineBroken)
         {
-          shipActualSpeed -= Time.deltaTime;
+          shipActualSpeed -= (Time.deltaTime * 5);
         }
 
         if (shipActualSpeed > maxSpeed)
@@ -66,7 +66,10 @@ public class ShipSpeed : MonoBehaviour
 
     public void Refuel()
     {
-        outOfFuel = false;
+        if (outOfFuel == true)
+        {
+            outOfFuel = false;
+        }
     }
 
     public void Repair()
