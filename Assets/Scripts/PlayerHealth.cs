@@ -49,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Harmful" && iframes <= 0f)
         {
@@ -61,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    private void OnTriggerStay(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (other.tag == "Harmful" && iframes <= 0f)
         {
