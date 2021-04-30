@@ -7,6 +7,13 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public enum playerAnimation
+    {
+        Idle,
+        Moving,
+        Interacting
+    };
+    
     public enum playerRole //Enumeration for the 4 main Player Roles.
     {
         Pilot,
@@ -68,6 +75,10 @@ public class PlayerController : MonoBehaviour
     [Header("Fire Extinguisher Object")]
     public GameObject extinguisherObject;
 
+    [Header("Animation Stuff")]
+    public Animator playerAnimator;
+    public playerAnimation anim;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -95,13 +106,18 @@ public class PlayerController : MonoBehaviour
         moveDirection *= moveSpeed;
 
         controller.Move(moveDirection * Time.deltaTime);
-        
+
         var rotation = Quaternion.LookRotation(rotationVector);
 
         //Checks if there is still input coming from the player. This prevents the mesh from rotating back to Y = 0 when there's no input.
         if (moveDirection.magnitude != 0)
         {
             RotateTowardsMovement(rotation);
+            anim = playerAnimation.Moving;
+        }
+        else if (anim != playerAnimation.Interacting)
+        {
+            anim = playerAnimation.Idle;
         }
 
         //Keeps the player at y = 0
@@ -111,6 +127,23 @@ public class PlayerController : MonoBehaviour
         if (throwCurrentCooldown >= 0f)
         {
             throwCurrentCooldown -= Time.deltaTime;
+        }
+
+        if (anim == playerAnimation.Idle)
+        {
+            playerAnimator.SetBool("isRunning", false);
+            playerAnimator.SetBool("isInteracting", false);
+        }
+
+        if (anim == playerAnimation.Moving)
+        {
+            playerAnimator.SetBool("isRunning", true);
+            playerAnimator.SetBool("isInteracting", false);
+        }
+        if (anim == playerAnimation.Interacting)
+        {
+            playerAnimator.SetBool("isRunning", false);
+            playerAnimator.SetBool("isInteracting", true);
         }
     }
 
@@ -128,6 +161,7 @@ public class PlayerController : MonoBehaviour
             if (button == requestedButton1 || button == requestedButton2 || button == requestedButton3 || button == requestedButton4)
             {
                 systemInRange.Interaction(button);
+                anim = playerAnimation.Interacting;
             }
             else Debug.Log("Wrong button, dingus!");
         }

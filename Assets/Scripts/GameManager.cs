@@ -5,13 +5,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Total Travel Distance")]
     public float distance;
     private float shipSpeed;
+
+    [Header("Bridge Controle")]
     public GameObject shipSpeedObject;
+
+    [Header("Win/Loss UI")]
     public GameObject winText;
     public GameObject loseText;
-    public GameObject engineer;
+
+    [Header("Player Objects")]
     public GameObject pilot;
+    public GameObject engineer;
     public GameObject scientist;
     public GameObject gunner;
     private float engineerHp;
@@ -33,22 +40,22 @@ public class GameManager : MonoBehaviour
         if (!navBroken)
         {
             shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
-            distance += (shipSpeed / 20 * Time.deltaTime);
+            distance += (shipSpeed / 10 * Time.deltaTime);
         }
 
         else
         {
             shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
-            distance -= (shipSpeed / 10 * Time.deltaTime);
+            distance -= (shipSpeed / 20 * Time.deltaTime);
         }
 
 
-        if (distance == 0f)
+        if (distance <= 0f)
         {
             GameWin();
         }
 
-        if (engineerHp == 0f && pilotHp == 0f && scientistHp == 0f && gunnerHp == 0)
+        if (engineerHp <= 0f && pilotHp <= 0f && scientistHp <= 0f && gunnerHp <= 0)
         {
             GameLoss();
         }

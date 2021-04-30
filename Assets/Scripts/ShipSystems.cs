@@ -42,6 +42,9 @@ public class ShipSystems : MonoBehaviour
     [Header("System Type:")]
     public systemType shipSystem;
 
+    [Header("GameManager Object")]
+    public GameObject gameManager;
+
     [Header("Interaction Buttons:")]
     public buttonOptions button1;
     public buttonOptions button2;
@@ -72,11 +75,27 @@ public class ShipSystems : MonoBehaviour
     public GameObject fire;
     public GameObject fireSpawnZone;
 
+    [Header("All Players in Scene")]
+    public GameObject playerPilot;
+    public GameObject playerEngineer;
+    public GameObject playerScientist;
+    public GameObject playerGunner;
+
+
     public void Awake()
     {
         systemHp = maxSystemHp;
         impactTimer = Random.Range(shipSpeed, 40f);
         shipSpeedObject = GameObject.Find("BridgeControl");
+
+        //Find the Game Manager
+        gameManager = GameObject.Find("GameManager");
+
+        //Find the players
+        playerPilot = GameObject.Find("Player_1_Pilot");
+        playerEngineer = GameObject.Find("Player_2_Engineer");
+        playerScientist = GameObject.Find("Player_3_Scientist");
+        playerGunner = GameObject.Find("Player_4_Gunner");
     }
 
     // Update is called once per frame
@@ -104,18 +123,23 @@ public class ShipSystems : MonoBehaviour
         if (systemHp == 0f)
         {
             broken = true;
-            /*if (shipSystem == systemType.BridgeControls)
+            if (shipSystem == systemType.BridgeControls)
             {
-                gameObject.GetComponent<GameManager>().BrokenNav();
+                gameManager.GetComponent<GameManager>().BrokenNav();
             }
+
             if (shipSystem == systemType.EngineeringControls)
             {
-                gameObject.GetComponent<ShipSpeed>().BrokenEngine();
+                shipSpeedObject.GetComponent<ShipSpeed>().BrokenEngine();
             }
+
             if (shipSystem == systemType.LifeSupport)
             {
-                gameObject.GetComponent<PlayerHealth>().LifeSupportBroke();
-            }*/
+                playerPilot.GetComponent<PlayerHealth>().LifeSupportBroke();
+                playerEngineer.GetComponent<PlayerHealth>().LifeSupportBroke();
+                playerScientist.GetComponent<PlayerHealth>().LifeSupportBroke();
+                playerGunner.GetComponent<PlayerHealth>().LifeSupportBroke();
+            }
         }
         
 
@@ -323,6 +347,24 @@ public class ShipSystems : MonoBehaviour
     {
         systemHp = repairHp;
         broken = false;
+
+        if (shipSystem == systemType.BridgeControls)
+        {
+            gameManager.GetComponent<GameManager>().Repair();
+        }
+
+        if (shipSystem == systemType.EngineeringControls)
+        {
+            shipSpeedObject.GetComponent<ShipSpeed>().Repair();
+        }
+
+        if (shipSystem == systemType.LifeSupport)
+        {
+            playerPilot.GetComponent<PlayerHealth>().Repair();
+            playerEngineer.GetComponent<PlayerHealth>().Repair();
+            playerScientist.GetComponent<PlayerHealth>().Repair();
+            playerGunner.GetComponent<PlayerHealth>().Repair();
+        }
     }
 
 }
