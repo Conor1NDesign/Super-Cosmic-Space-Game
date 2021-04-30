@@ -11,12 +11,10 @@ public class ShipSystems : MonoBehaviour
     private float minSystemHp = 0f;
     public float impactTimer;
     public float shipSpeed;
-    public float fireChance;
-    private float fireTrigger;
     public float maintanenceValue;
-    private float repairHp;
+    private float repairHp = 30f;
     public bool broken;
-    public GameObject fire;
+    
     public GameObject shipSpeedObject;
     public enum buttonOptions //Enumeration for the 4 main Input buttons on a gamepad, plus an option to select one at random.
     {
@@ -66,11 +64,19 @@ public class ShipSystems : MonoBehaviour
     [Space(10)]
     private bool beingInteracted = false;
     public GameObject testingDinger;
-    
+
+    [Header("Fire!")]
+    public float maxFireChance;
+    public float fireChance;
+    private float fireTrigger;
+    public GameObject fire;
+    public GameObject fireSpawnZone;
+
     public void Awake()
     {
-
-        impactTimer = Random.Range(shipSpeed, 90f);
+        systemHp = maxSystemHp;
+        impactTimer = Random.Range(shipSpeed, 40f);
+        shipSpeedObject = GameObject.Find("BridgeControl");
     }
 
     // Update is called once per frame
@@ -80,11 +86,12 @@ public class ShipSystems : MonoBehaviour
 
         if (impactTimer > 0f)
         {
-            impactTimer -= Time.deltaTime;
+            impactTimer -= (Time.deltaTime * (shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed / 10));
         }
-        if (impactTimer == 0f)
+        if (impactTimer <= 0f)
         {
             Impact();
+            impactTimer = (Random.Range(40, 121));
         }
         if (systemHp > maxSystemHp)
         {
@@ -97,6 +104,18 @@ public class ShipSystems : MonoBehaviour
         if (systemHp == 0f)
         {
             broken = true;
+            /*if (shipSystem == systemType.BridgeControls)
+            {
+                gameObject.GetComponent<GameManager>().BrokenNav();
+            }
+            if (shipSystem == systemType.EngineeringControls)
+            {
+                gameObject.GetComponent<ShipSpeed>().BrokenEngine();
+            }
+            if (shipSystem == systemType.LifeSupport)
+            {
+                gameObject.GetComponent<PlayerHealth>().LifeSupportBroke();
+            }*/
         }
         
 
@@ -222,14 +241,32 @@ public class ShipSystems : MonoBehaviour
             testingDinger.SetActive(false);
         else testingDinger.SetActive(true);
 
-        if (shipSystem == systemType.CraftingBench)
+        if (shipSystem == systemType.CraftingBench && interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Scientist)
         {
             interactingPlayer.GetComponent<InventoryManager>().CraftItem(button);
         }
 
-        if (shipSystem == systemType.BridgeControls)
+        if (shipSystem == systemType.BridgeControls && interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Pilot)
         {
             BridgeControl(button);
+        }
+
+        if (interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Engineer && broken && button == buttonOptions.BButton)
+        {
+            Repair();
+        }
+
+        if (interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Engineer && !broken && button == buttonOptions.BButton)
+        {
+            Maintain();
+        }
+
+        if (shipSystem == systemType.FuelStation && interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Pilot 
+            && interactingPlayer.GetComponent<InventoryManager>().currentItems > 0)
+        {
+            gameObject.GetComponent<Fuel>().Refuel();
+            interactingPlayer.GetComponent<InventoryManager>().currentItems -= 1;
+            interactingPlayer.GetComponent<InventoryManager>().fuel -= 1;
         }
     }
 
@@ -248,36 +285,44 @@ public class ShipSystems : MonoBehaviour
 
     public void Impact()
     {
-        systemHp -= (Random.Range(1, shipSpeed));
+        systemHp -= (Random.Range(0, (shipSpeed / 2)));
+        if (systemHp <= 0)
+            systemHp = 0;
         fireChance = (maxSystemHp - systemHp);
         fireTrigger = Random.Range(1, 101);
-        
+
+        if (fireChance > maxFireChance)
+            fireChance = maxFireChance;
         
         if (fireChance > fireTrigger)
         {
             Fire();
         }
 
-        impactTimer = (Random.Range(shipSpeed, 120) - shipSpeed);
+        //impactTimer = (Random.Range(shipSpeed, 121) - shipSpeed);
 
     }
     public void Fire()
     {
-        Instantiate(fire);
+        var fireSpawnRange = new Vector3(Random.Range(-fireSpawnZone.transform.localScale.x / 2, fireSpawnZone.transform.localScale.z / 2), 0, 
+            Random.Range(-fireSpawnZone.transform.localScale.z / 2, fireSpawnZone.transform.localScale.z / 2));
+        var fireSpawnPoint = fireSpawnZone.transform.position + fireSpawnRange;
+        Instantiate(fire, fireSpawnPoint, Quaternion.identity);
     }
 
     public void Maintain()
     {
-        systemHp += maintanenceValue;
+        if (interactingPlayer.GetComponent<InventoryManager>().currentItems > 0 && systemHp < 100)
+        {
+            systemHp += maintanenceValue;
+            interactingPlayer.GetComponent<InventoryManager>().currentItems -= 1;
+        }
     }
 
     public void Repair()
     {
-        if (broken)
-        {
-            systemHp = repairHp;
-        }
-        
+        systemHp = repairHp;
+        broken = false;
     }
 
 }
