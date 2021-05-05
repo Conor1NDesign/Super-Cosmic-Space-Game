@@ -9,7 +9,6 @@ public class ShipSystems : MonoBehaviour
     public float systemHp;
     public float maxSystemHp;
     private float minSystemHp = 0f;
-    public float impactTimer;
     public float shipSpeed;
     public float maintanenceValue;
     private float repairHp = 30f;
@@ -85,7 +84,6 @@ public class ShipSystems : MonoBehaviour
     public void Awake()
     {
         systemHp = maxSystemHp;
-        impactTimer = Random.Range(shipSpeed, 40f);
         shipSpeedObject = GameObject.Find("BridgeControl");
 
         //Find the Game Manager
@@ -103,15 +101,6 @@ public class ShipSystems : MonoBehaviour
     {
         shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
 
-        if (impactTimer > 0f)
-        {
-            impactTimer -= (Time.deltaTime * (shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed / 10));
-        }
-        if (impactTimer <= 0f)
-        {
-            Impact();
-            impactTimer = (Random.Range(40, 121));
-        }
         if (systemHp > maxSystemHp)
         {
             systemHp = maxSystemHp;
@@ -322,9 +311,6 @@ public class ShipSystems : MonoBehaviour
         {
             Fire();
         }
-
-        //impactTimer = (Random.Range(shipSpeed, 121) - shipSpeed);
-
     }
     public void Fire()
     {
