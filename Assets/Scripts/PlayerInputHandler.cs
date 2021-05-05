@@ -82,7 +82,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnRightTriggerPress(CallbackContext context)
     {
-        if (playerController != null)
+        if (playerController != null && playerController.role == PlayerController.playerRole.Gunner)
         {
             if (context.performed)
             {
