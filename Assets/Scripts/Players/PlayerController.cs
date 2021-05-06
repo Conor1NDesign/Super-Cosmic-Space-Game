@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Fire Extinguisher Object")]
     public GameObject extinguisherObject;
+    public GameObject gun;
 
     [Header("Animation Stuff")]
     public Animator playerAnimator;
