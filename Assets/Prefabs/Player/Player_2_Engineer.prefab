@@ -247,8 +247,10 @@ MonoBehaviour:
   fuelPrefab: {fileID: 5467165016079118408, guid: 3af8b8520b1651f4da4811232b2d0eca, type: 3}
   medkitPrefab: {fileID: 5467165016079118408, guid: 09bc35b2fbab11243be96b34671d2072, type: 3}
   extinguisherObject: {fileID: 5690369114060098575}
+  gunObject: {fileID: 0}
   playerAnimator: {fileID: 5977503093506928428}
   anim: 0
+  readyToFire: 0
 --- !u!114 &5929047616687516911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,7 +393,7 @@ PrefabInstance:
     - target: {fileID: 4421862105852456868, guid: 958b0dd7a67940f40ba2ba562a4246d3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2fca1f87b29f0e14aa2ebe49b3081204, type: 2}
+      objectReference: {fileID: 2100000, guid: c8862b96ddd1a12419b7df66532b9418, type: 2}
     - target: {fileID: 4883639310496444677, guid: 958b0dd7a67940f40ba2ba562a4246d3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -399,11 +401,11 @@ PrefabInstance:
     - target: {fileID: 6444681329256414022, guid: 958b0dd7a67940f40ba2ba562a4246d3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2fca1f87b29f0e14aa2ebe49b3081204, type: 2}
+      objectReference: {fileID: 2100000, guid: c8862b96ddd1a12419b7df66532b9418, type: 2}
     - target: {fileID: 7284015705702219481, guid: 958b0dd7a67940f40ba2ba562a4246d3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2fca1f87b29f0e14aa2ebe49b3081204, type: 2}
+      objectReference: {fileID: 2100000, guid: c8862b96ddd1a12419b7df66532b9418, type: 2}
     - target: {fileID: 7441678422655372315, guid: 958b0dd7a67940f40ba2ba562a4246d3, type: 3}
       propertyPath: m_Name
       value: Player_Engineer
@@ -411,7 +413,7 @@ PrefabInstance:
     - target: {fileID: 7692251438545847754, guid: 958b0dd7a67940f40ba2ba562a4246d3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2fca1f87b29f0e14aa2ebe49b3081204, type: 2}
+      objectReference: {fileID: 2100000, guid: c8862b96ddd1a12419b7df66532b9418, type: 2}
     - target: {fileID: 7786151690132018849, guid: 958b0dd7a67940f40ba2ba562a4246d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
