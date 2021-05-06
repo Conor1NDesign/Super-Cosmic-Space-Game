@@ -52,6 +52,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Left_Trigger",
+                    "type": "Button",
+                    "id": "fdb7a3e9-cb00-434d-830c-1eabe302a049",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -173,6 +181,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Right_Trigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9a05a74-6890-4f5b-ab10-5cf3a96cf0b9",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Left_Trigger",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
