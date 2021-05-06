@@ -8,6 +8,7 @@ TagManager:
   - PlayerPilot
   - PlayerScientist
   - Interactable
+  - Rat
   layers:
   - Default
   - TransparentFX

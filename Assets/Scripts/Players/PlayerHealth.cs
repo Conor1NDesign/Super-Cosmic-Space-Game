@@ -8,10 +8,11 @@ public class PlayerHealth : MonoBehaviour
     public float health;
     public int maxHealth;
 
-    [Header("Fire Damage:")]
+    [Header("Damage:")]
     public float fireDamage;
     public float suffocationDamage;
     public bool suffocating;
+    private float ratDamage;
 
     [Header("Invincibility After Damage:")]
     public float iframes;
@@ -19,8 +20,6 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Healing From Potions:")]
     public float healingAmount;
-
-    
     
 
     void Awake()
@@ -56,8 +55,13 @@ public class PlayerHealth : MonoBehaviour
            health -= fireDamage;
             iframes = invicibility;
             Debug.Log("burned");
-        } 
+        }
+        if (other.tag == "Rat")
+        {
+            health -= ratDamage;
+            iframes = invicibility;
 
+        }
 
     }
 

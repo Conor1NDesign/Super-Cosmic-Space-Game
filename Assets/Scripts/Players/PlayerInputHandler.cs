@@ -14,6 +14,7 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerController playerController;
     public GameObject toInteractWith;
+    private InventoryManager inventoryManager;
 
     private float playerMoveSpeed;
 
@@ -24,6 +25,7 @@ public class PlayerInputHandler : MonoBehaviour
         var index = playerInput.playerIndex;
         playerController = playerControllers.FirstOrDefault(m => m.GetPlayerIndex() == index);
         playerMoveSpeed = playerController.moveSpeed;
+        inventoryManager = playerController.GetComponent<InventoryManager>();
     }
 
     public void OnMove(CallbackContext context)
@@ -104,7 +106,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             if (context.started)
             {
-                StartCoroutine(GunShot());
+                StartCoroutine(playerController.GunShot());
             }
             
         }
@@ -117,13 +119,5 @@ public class PlayerInputHandler : MonoBehaviour
         gameObject.transform.position = playerController.transform.position;
     }
 
-    IEnumerator GunShot()
-    {
-        playerController.gunObject.SetActive(true);
-        playerController.moveSpeed = 0;
-        Debug.Log ("bang");
-        yield return new WaitForSeconds(.1f);
-        playerController.gunObject.SetActive(false);
-        playerController.moveSpeed = playerMoveSpeed;
-    }
+  
 }

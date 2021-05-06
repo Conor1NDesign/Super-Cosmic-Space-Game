@@ -20,7 +20,7 @@ public class GunShot : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "rat")
+        if (other.tag == "Rat")
         {
             other.GetComponent<Rat>().ratHealth -= gunDamage;
         }
