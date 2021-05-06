@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4467992042581336952}
-  - component: {fileID: 4467992042581336949}
   - component: {fileID: 4134888830511165457}
   m_Layer: 0
   m_Name: MessArea
@@ -26,53 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4467992042581336948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 8.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4329218853761283177}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4467992042581336949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4467992042581336948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731b82f11d128564ea93988b8bf5ec0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  systemHp: 0
-  maxSystemHp: 0
-  impactTimer: 0
-  shipSpeed: 0
-  maintanenceValue: 0
-  broken: 0
-  shipSpeedObject: {fileID: 0}
-  shipSystem: 0
-  gameManager: {fileID: 0}
-  button1: 0
-  button2: 1
-  button3: 2
-  button4: 3
-  pilotAllowed: 0
-  engineerAllowed: 0
-  gunnerAllowed: 0
-  scientistAllowed: 0
-  buttonPrompt: {fileID: 0}
-  interactingPlayer: {fileID: 0}
-  testingDinger: {fileID: 0}
-  maxFireChance: 80
-  fireChance: 0
-  fire: {fileID: 6577715077530141215, guid: 0238d56f79fca594fae00ce6d7ac4d96, type: 3}
-  fireSpawnZone: {fileID: 0}
-  playerPilot: {fileID: 0}
-  playerEngineer: {fileID: 0}
-  playerScientist: {fileID: 0}
-  playerGunner: {fileID: 0}
 --- !u!114 &4134888830511165457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mess: {fileID: 7112370196449309634, guid: edc1018723a67d64383e3cc8258143e1, type: 3}
-  messSpawnZone: {fileID: 0}
+  messSpawnZone: {fileID: 6314836435526041112}
 --- !u!1 &6314836435526041112
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,5 +103,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1851eee9aab02074dae44b3551a53bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerColour: {r: 1, g: 0, b: 0, a: 0.11764706}
-  triggerWireColour: {r: 1, g: 0, b: 0, a: 1}
+  triggerColour: {r: 0.97957873, g: 1, b: 0, a: 0.33333334}
+  triggerWireColour: {r: 0.8502884, g: 0, b: 1, a: 1}
