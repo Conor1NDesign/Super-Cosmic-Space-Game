@@ -74,18 +74,25 @@ public class PlayerController : MonoBehaviour
 
     [Header("Fire Extinguisher Object")]
     public GameObject extinguisherObject;
-    public GameObject gunObject;
+    
 
     [Header("Animation Stuff")]
     public Animator playerAnimator;
     public playerAnimation anim;
+    
+    [Header ("Gun Stuff")]
     public bool readyToFire;
-    private float gunCycleRate;
+    private float playerDefaultMoveSpeed;
+    public float gunCycleRate;
+    public GameObject gunObject;
+    public float fireRate;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         playerHealthScript = GetComponent<PlayerHealth>();
+        readyToFire = true;
+        playerDefaultMoveSpeed = moveSpeed;
     }
 
     public int GetPlayerIndex()
@@ -156,10 +163,10 @@ public class PlayerController : MonoBehaviour
             gunCycleRate -= Time.deltaTime;
         }
 
-        if (gunCycleRate <= 0 && gameObject.GetComponent<InventoryManager>().ammo < 0)
+        if (gunCycleRate <= 0 && gameObject.GetComponent<InventoryManager>().maxItems > 0)
         {
             readyToFire = true;
-            gameObject.GetComponent<InventoryManager>().ammo -= 1;
+           
         }
     }
 
@@ -242,4 +249,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public IEnumerator GunShot()
+    {
+        gunObject.SetActive(true);
+        moveSpeed = 0;
+        yield return new WaitForSeconds(.1f);
+        gunObject.SetActive(false);
+        moveSpeed = playerDefaultMoveSpeed;
+        readyToFire = false;
+        gameObject.GetComponent<InventoryManager>().maxItems -= 1;
+        gunCycleRate = fireRate;
+    }
 }

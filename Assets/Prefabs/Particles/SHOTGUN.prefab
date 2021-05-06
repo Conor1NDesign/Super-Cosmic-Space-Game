@@ -10,9 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6429624615594426303}
   - component: {fileID: 6856206166327802219}
-  - component: {fileID: 390088101426712503}
   - component: {fileID: 4557325853104134131}
-  - component: {fileID: 3561294552098882425}
   - component: {fileID: 2327496396084122809}
   m_Layer: 0
   m_Name: SHOTGUN
@@ -47,21 +45,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 3}
-  m_Center: {x: 0, y: 1.5, z: 0}
---- !u!114 &390088101426712503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6581998192629504608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4769416074b62840a2f7279ab770ede, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireHp: 100
+  m_Size: {x: 3, y: 3, z: 10}
+  m_Center: {x: 0, y: 1.5, z: 5}
 --- !u!114 &4557325853104134131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,20 +61,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerColour: {r: 1, g: 0.22343129, b: 0, a: 0.47058824}
   triggerWireColour: {r: 1, g: 0.5811298, b: 0, a: 1}
---- !u!136 &3561294552098882425
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6581998192629504608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 3
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!54 &2327496396084122809
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,13 +102,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7312580306101576719}
-  m_LocalRotation: {x: -1, y: -0, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6429624615594426303}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &4549460212514217177
 ParticleSystem:
   m_ObjectHideFlags: 0
