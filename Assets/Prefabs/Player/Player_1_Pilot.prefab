@@ -205,7 +205,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c8862b96ddd1a12419b7df66532b9418, type: 2}
+  - {fileID: 2100000, guid: 2fca1f87b29f0e14aa2ebe49b3081204, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -367,7 +367,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c8862b96ddd1a12419b7df66532b9418, type: 2}
+  - {fileID: 2100000, guid: 2fca1f87b29f0e14aa2ebe49b3081204, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -480,7 +480,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c8862b96ddd1a12419b7df66532b9418, type: 2}
+  - {fileID: 2100000, guid: 2fca1f87b29f0e14aa2ebe49b3081204, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1412,10 +1412,12 @@ MonoBehaviour:
   fuelPrefab: {fileID: 5467165016079118408, guid: 3af8b8520b1651f4da4811232b2d0eca, type: 3}
   medkitPrefab: {fileID: 5467165016079118408, guid: 09bc35b2fbab11243be96b34671d2072, type: 3}
   extinguisherObject: {fileID: 5690369114060098575}
-  gunObject: {fileID: 0}
   playerAnimator: {fileID: 2685007759770253931}
   anim: 0
   readyToFire: 0
+  gunCycleRate: 0
+  gunObject: {fileID: 0}
+  fireRate: 0
 --- !u!114 &5929047616687516911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1636,7 +1638,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c8862b96ddd1a12419b7df66532b9418, type: 2}
+  - {fileID: 2100000, guid: 2fca1f87b29f0e14aa2ebe49b3081204, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

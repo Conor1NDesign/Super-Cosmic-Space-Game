@@ -249,6 +249,10 @@ MonoBehaviour:
   extinguisherObject: {fileID: 5690369114060098575}
   playerAnimator: {fileID: 7364329896573551673}
   anim: 0
+  readyToFire: 0
+  gunCycleRate: 0
+  gunObject: {fileID: 0}
+  fireRate: 0
 --- !u!114 &5929047616687516911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,7 +395,7 @@ PrefabInstance:
     - target: {fileID: 2526424153748464340, guid: 968c8123d92a8fe40a3b0ba30845c79f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 97a33171d7256cf4cb9d871f5a558727, type: 2}
+      objectReference: {fileID: 2100000, guid: cda724b48e0a3f34587427c360c9d7ef, type: 2}
     - target: {fileID: 3923109723819493349, guid: 968c8123d92a8fe40a3b0ba30845c79f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -403,7 +407,7 @@ PrefabInstance:
     - target: {fileID: 5125710795008112182, guid: 968c8123d92a8fe40a3b0ba30845c79f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 97a33171d7256cf4cb9d871f5a558727, type: 2}
+      objectReference: {fileID: 2100000, guid: cda724b48e0a3f34587427c360c9d7ef, type: 2}
     - target: {fileID: 5348095381626165568, guid: 968c8123d92a8fe40a3b0ba30845c79f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -479,7 +483,7 @@ PrefabInstance:
     - target: {fileID: 8399891308730058938, guid: 968c8123d92a8fe40a3b0ba30845c79f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 97a33171d7256cf4cb9d871f5a558727, type: 2}
+      objectReference: {fileID: 2100000, guid: cda724b48e0a3f34587427c360c9d7ef, type: 2}
     - target: {fileID: 8724618515583877483, guid: 968c8123d92a8fe40a3b0ba30845c79f, type: 3}
       propertyPath: m_Name
       value: Player_Scientist
@@ -487,7 +491,7 @@ PrefabInstance:
     - target: {fileID: 8882278209903883177, guid: 968c8123d92a8fe40a3b0ba30845c79f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 97a33171d7256cf4cb9d871f5a558727, type: 2}
+      objectReference: {fileID: 2100000, guid: cda724b48e0a3f34587427c360c9d7ef, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 968c8123d92a8fe40a3b0ba30845c79f, type: 3}
 --- !u!4 &7888208307397992066 stripped
