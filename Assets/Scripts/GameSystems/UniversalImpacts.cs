@@ -38,6 +38,8 @@ public class UniversalImpacts : MonoBehaviour
     public int messSpawnChance;
     private int selectedMessZone;
 
+    public List<GameObject> activeCameras;
+
 
 
 
@@ -117,6 +119,11 @@ public class UniversalImpacts : MonoBehaviour
 
             if (selectedMessZone == 6)
                 messSpawnZone06.GetComponent<MessController>().MakeAMess();
+        }
+
+        foreach(GameObject cameras in activeCameras)
+        {
+            StartCoroutine(cameras.GetComponent<CameraShake>().ShakeTheCamera());
         }
     }
 }
