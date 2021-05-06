@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Rat : MonoBehaviour
 {
+
+    public float ratHealth;
     // Start is called before the first frame update
     void Start()
     {

@@ -74,11 +74,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Fire Extinguisher Object")]
     public GameObject extinguisherObject;
-    public GameObject gun;
+    public GameObject gunObject;
 
     [Header("Animation Stuff")]
     public Animator playerAnimator;
     public playerAnimation anim;
+    public bool readyToFire;
+    private float gunCycleRate;
 
     private void Awake()
     {
@@ -145,6 +147,19 @@ public class PlayerController : MonoBehaviour
         {
             playerAnimator.SetBool("isRunning", false);
             playerAnimator.SetBool("isInteracting", true);
+        }
+
+        //Gunshot Cooldown
+
+        if (gunCycleRate > 0)
+        {
+            gunCycleRate -= Time.deltaTime;
+        }
+
+        if (gunCycleRate <= 0 && gameObject.GetComponent<InventoryManager>().ammo < 0)
+        {
+            readyToFire = true;
+            gameObject.GetComponent<InventoryManager>().ammo -= 1;
         }
     }
 

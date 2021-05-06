@@ -80,7 +80,7 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    public void OnRightTriggerPress(CallbackContext context)
+    public void OnLeftTriggerPress(CallbackContext context)
     {
         if (playerController != null && playerController.role == PlayerController.playerRole.Gunner)
         {
@@ -98,9 +98,32 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+   public void OnRightTriggerPress(CallbackContext context)
+    {
+        if (playerController != null && playerController.role == PlayerController.playerRole.Gunner && playerController.readyToFire)
+        {
+            if (context.started)
+            {
+                StartCoroutine(GunShot());
+            }
+            
+        }
+    }
+
+
 
     public void Update()
     {
         gameObject.transform.position = playerController.transform.position;
+    }
+
+    IEnumerator GunShot()
+    {
+        playerController.gunObject.SetActive(true);
+        playerController.moveSpeed = 0;
+        Debug.Log ("bang");
+        yield return new WaitForSeconds(.1f);
+        playerController.gunObject.SetActive(false);
+        playerController.moveSpeed = playerMoveSpeed;
     }
 }
