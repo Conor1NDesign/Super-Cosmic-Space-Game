@@ -141,6 +141,18 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnBackButtonPress(CallbackContext context)
+    {
+        if (playerController != null)
+        {
+            if (context.performed)
+                playerController.playerCard.SetActive(true);
+
+            if (context.canceled)
+                playerController.playerCard.SetActive(false);
+        }
+    }
+
 
 
     public void Update()
