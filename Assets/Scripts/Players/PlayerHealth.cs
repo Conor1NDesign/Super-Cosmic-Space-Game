@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     public float fireDamage;
     public float suffocationDamage;
     public bool suffocating;
-    private float ratDamage;
+    public float ratDamage;
 
     [Header("Invincibility After Damage:")]
     public float iframes;

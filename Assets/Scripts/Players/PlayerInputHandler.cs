@@ -16,6 +16,9 @@ public class PlayerInputHandler : MonoBehaviour
     public GameObject toInteractWith;
     private InventoryManager inventoryManager;
 
+    private GameObject playerCanvas;
+    private GameObject playerCamera;
+
     private float playerMoveSpeed;
 
     private void Awake()
@@ -26,6 +29,32 @@ public class PlayerInputHandler : MonoBehaviour
         playerController = playerControllers.FirstOrDefault(m => m.GetPlayerIndex() == index);
         playerMoveSpeed = playerController.moveSpeed;
         inventoryManager = playerController.GetComponent<InventoryManager>();
+
+        playerCamera = transform.Find("Camera").gameObject;
+
+        if (playerController.playerIndex == 0)
+        {
+            playerCanvas = GameObject.Find("Canvas_P1");
+        }
+
+        if (playerController.playerIndex == 1)
+        {
+            playerCanvas = GameObject.Find("Canvas_P2");
+        }
+
+        if (playerController.playerIndex == 2)
+        {
+            playerCanvas = GameObject.Find("Canvas_P3");
+        }
+
+        if (playerController.playerIndex == 3)
+        {
+            playerCanvas = GameObject.Find("Canvas_P4");
+        }
+
+        playerCanvas.GetComponent<Canvas>().worldCamera = playerCamera.GetComponent<Camera>();
+        playerCanvas.GetComponent<Canvas>().planeDistance = 1;
+
     }
 
     public void OnMove(CallbackContext context)
