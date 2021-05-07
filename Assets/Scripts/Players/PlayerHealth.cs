@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -20,7 +21,10 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Healing From Potions:")]
     public float healingAmount;
-    
+
+    [Header("UI Elements")]
+    public Slider healthSlider;
+
 
     void Awake()
     {
@@ -44,8 +48,9 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0f)
         {
             gameObject.SetActive(false);
-
         }
+
+        healthSlider.value = health;
     }
 
     public void OnTriggerEnter(Collider other)

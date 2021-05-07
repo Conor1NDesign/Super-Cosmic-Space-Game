@@ -247,7 +247,7 @@ MonoBehaviour:
   fuelPrefab: {fileID: 5467165016079118408, guid: 3af8b8520b1651f4da4811232b2d0eca, type: 3}
   medkitPrefab: {fileID: 5467165016079118408, guid: 09bc35b2fbab11243be96b34671d2072, type: 3}
   extinguisherObject: {fileID: 5690369114060098575}
-  playerAnimator: {fileID: 0}
+  playerAnimator: {fileID: 4306889685221059572}
   anim: 0
   readyToFire: 0
   gunCycleRate: 0
@@ -270,9 +270,11 @@ MonoBehaviour:
   fireDamage: 0
   suffocationDamage: 0
   suffocating: 0
+  ratDamage: 0
   iframes: 0
   invicibility: 1
   healingAmount: 40
+  healthSlider: {fileID: 0}
 --- !u!114 &312538786694039168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,5 +471,10 @@ PrefabInstance:
 --- !u!4 &3499004393478779215 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8241520230776183761, guid: ad020daaa1e1d6048a2173ae8f686952, type: 3}
+  m_PrefabInstance: {fileID: 4814689988703251102}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4306889685221059572 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8724618515583877482, guid: ad020daaa1e1d6048a2173ae8f686952, type: 3}
   m_PrefabInstance: {fileID: 4814689988703251102}
   m_PrefabAsset: {fileID: 0}
