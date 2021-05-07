@@ -73,5 +73,13 @@ public class Mess : MonoBehaviour
             Janitor.thisMess = gameObject;
         }
     }
+    public void OnTriggerExit(Collider other)
+    {
+        var Janitor = other.GetComponent<PlayerController>();
+        if (Janitor.role == PlayerController.playerRole.Gunner)
+        {
+            Janitor.thisMess = null;
+        }
+    }
 
 }
