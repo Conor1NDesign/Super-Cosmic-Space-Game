@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6856206166327802219}
   - component: {fileID: 4557325853104134131}
   - component: {fileID: 2327496396084122809}
+  - component: {fileID: 1462852767043672322}
   m_Layer: 0
   m_Name: SHOTGUN
   m_TagString: Harmful
@@ -77,6 +78,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1462852767043672322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6581998192629504608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780b0f24d5617a541a6aef762562156b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunDamage: 100
 --- !u!1 &7312580306101576719
 GameObject:
   m_ObjectHideFlags: 0

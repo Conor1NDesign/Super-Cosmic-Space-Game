@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rat : MonoBehaviour
 {
-    public float ratDamage;
+    public GameObject spawnOrigin;
     public float ratHealth;
     // Start is called before the first frame update
     void Start()
@@ -17,9 +17,10 @@ public class Rat : MonoBehaviour
     {
         if(ratHealth <= 0)
         {
+            spawnOrigin.GetComponent<Mess>().currentRats -= 1f;
             Destroy(gameObject);
         }
     }
 
-  
+
 }
