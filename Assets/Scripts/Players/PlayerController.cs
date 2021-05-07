@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
         Moving,
         Interacting
     };
-    
+
     public enum playerRole //Enumeration for the 4 main Player Roles.
     {
         Pilot,
@@ -74,13 +74,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Fire Extinguisher Object")]
     public GameObject extinguisherObject;
-    
+
 
     [Header("Animation Stuff")]
     public Animator playerAnimator;
     public playerAnimation anim;
-    
-    [Header ("Gun Stuff")]
+
+    [Header("Gun Stuff")]
     public bool readyToFire;
     private float playerDefaultMoveSpeed;
     public float gunCycleRate;
@@ -89,6 +89,14 @@ public class PlayerController : MonoBehaviour
 
     [Header("UI Elements")]
     public GameObject playerCard;
+    public GameObject craftingButtons;
+    public GameObject bridgeButtons;
+    public GameObject fuelButtons;
+    public GameObject aButton;
+    public GameObject bButton;
+    public GameObject xButton;
+    public GameObject yButton;
+    public GameObject componentIcon;
 
     private void Awake()
     {
@@ -169,102 +177,164 @@ public class PlayerController : MonoBehaviour
         if (gunCycleRate <= 0 && gameObject.GetComponent<InventoryManager>().currentItems > 0)
         {
             readyToFire = true;
-           
+
+        }
+
+        //Button Popups
+        if (canInteract == true)
+        {
+            if (systemInRange.shipSystem == ShipSystems.systemType.CraftingBench)
+            {
+                craftingButtons.SetActive(true);
+            }
+
+            else if (systemInRange.shipSystem == ShipSystems.systemType.BridgeControls)
+            {
+                bridgeButtons.SetActive(true);
+            }
+
+            else if (systemInRange.shipSystem == ShipSystems.systemType.FuelStation)
+            {
+                fuelButtons.SetActive(true);
+            }
+
+            else
+            {
+                if (requestedButton1 == ShipSystems.buttonOptions.AButton)
+                {
+                    aButton.SetActive(true);
+                    if (role == playerRole.Engineer)
+                        componentIcon.SetActive(true);
+                }
+
+                else if (requestedButton1 == ShipSystems.buttonOptions.BButton)
+                {
+                    bButton.SetActive(true);
+                    if (role == playerRole.Engineer)
+                        componentIcon.SetActive(true);
+                }
+
+                else if (requestedButton1 == ShipSystems.buttonOptions.XButton)
+                {
+                    xButton.SetActive(true);
+                    if (role == playerRole.Engineer)
+                        componentIcon.SetActive(true);
+                }
+
+                else if (requestedButton1 == ShipSystems.buttonOptions.YButton)
+                {
+                    yButton.SetActive(true);
+                    if (role == playerRole.Engineer)
+                        componentIcon.SetActive(true);
+                }
+            }
+        }
+
+        else
+        {
+            craftingButtons.SetActive(false);
+            bridgeButtons.SetActive(false);
+            fuelButtons.SetActive(false);
+            aButton.SetActive(false);
+            bButton.SetActive(false);
+            xButton.SetActive(false);
+            yButton.SetActive(false);
+            componentIcon.SetActive(false);
         }
     }
 
-    public void RotateTowardsMovement(Quaternion rotation)
-    {
-
-        //Rotates the Player's mesh towards the 'rotation' variable.
-        playerMesh.gameObject.transform.rotation = Quaternion.RotateTowards(playerMesh.gameObject.transform.rotation, rotation, rotateSpeed);
-    }
-
-    public void RecieveButtonInput(ShipSystems.buttonOptions button)
-    {
-        if (canInteract)
+        public void RotateTowardsMovement(Quaternion rotation)
         {
-            if (button == requestedButton1 || button == requestedButton2 || button == requestedButton3 || button == requestedButton4)
+
+            //Rotates the Player's mesh towards the 'rotation' variable.
+            playerMesh.gameObject.transform.rotation = Quaternion.RotateTowards(playerMesh.gameObject.transform.rotation, rotation, rotateSpeed);
+        }
+
+        public void RecieveButtonInput(ShipSystems.buttonOptions button)
+        {
+            if (canInteract)
             {
-                systemInRange.Interaction(button);
-                anim = playerAnimation.Interacting;
+                if (button == requestedButton1 || button == requestedButton2 || button == requestedButton3 || button == requestedButton4)
+                {
+                    systemInRange.Interaction(button);
+                    anim = playerAnimation.Interacting;
+                }
+                else Debug.Log("Wrong button, dingus!");
             }
-            else Debug.Log("Wrong button, dingus!");
-        }
-        else if (role == playerRole.Scientist)
-        {
-            if (button == ShipSystems.buttonOptions.BButton)
+            else if (role == playerRole.Scientist)
             {
-                ThrowItem(craftableItems.Medkits);
-            }
+                if (button == ShipSystems.buttonOptions.BButton)
+                {
+                    ThrowItem(craftableItems.Medkits);
+                }
 
-            if (button == ShipSystems.buttonOptions.AButton)
+                if (button == ShipSystems.buttonOptions.AButton)
+                {
+                    ThrowItem(craftableItems.Fuel);
+                }
+
+                if (button == ShipSystems.buttonOptions.XButton)
+                {
+                    ThrowItem(craftableItems.Ammo);
+                }
+
+                if (button == ShipSystems.buttonOptions.YButton)
+                {
+                    ThrowItem(craftableItems.Components);
+                }
+            }
+        }
+
+        public void ThrowItem(craftableItems thrownItem)
+
+        {
+            if (thrownItem == craftableItems.Medkits && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().medkits > 0)
             {
-                ThrowItem(craftableItems.Fuel);
+                Instantiate(medkitPrefab, transform.position + (playerMesh.transform.forward * throwableSpawnDistance), playerMesh.transform.rotation);
+                throwCurrentCooldown = throwMaxCooldown;
+                gameObject.GetComponent<InventoryManager>().medkits -= 1;
+                gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+                gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
             }
 
-            if (button == ShipSystems.buttonOptions.XButton)
+            if (thrownItem == craftableItems.Fuel && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().fuel > 0)
             {
-                ThrowItem(craftableItems.Ammo);
+                Instantiate(fuelPrefab, transform.position + (playerMesh.transform.forward * throwableSpawnDistance), playerMesh.transform.rotation);
+                throwCurrentCooldown = throwMaxCooldown;
+                gameObject.GetComponent<InventoryManager>().fuel -= 1;
+                gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+                gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
             }
 
-            if (button == ShipSystems.buttonOptions.YButton)
+            if (thrownItem == craftableItems.Ammo && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().ammo > 0)
             {
-                ThrowItem(craftableItems.Components);
+                Instantiate(ammoPrefab, transform.position + (playerMesh.transform.forward * throwableSpawnDistance), playerMesh.transform.rotation);
+                throwCurrentCooldown = throwMaxCooldown;
+                gameObject.GetComponent<InventoryManager>().ammo -= 1;
+                gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+                gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
             }
+
+            if (thrownItem == craftableItems.Components && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().components > 0)
+            {
+                Instantiate(componentPrefab, transform.position + (playerMesh.transform.forward * throwableSpawnDistance), playerMesh.transform.rotation);
+                throwCurrentCooldown = throwMaxCooldown;
+                gameObject.GetComponent<InventoryManager>().components -= 1;
+                gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+                gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
+            }
+
         }
-    }
 
-    public void ThrowItem(craftableItems thrownItem)
-
-    {
-        if (thrownItem == craftableItems.Medkits && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().medkits > 0)
+        public IEnumerator GunShot()
         {
-            Instantiate(medkitPrefab, transform.position + (playerMesh.transform.forward * throwableSpawnDistance), playerMesh.transform.rotation);
-            throwCurrentCooldown = throwMaxCooldown;
-            gameObject.GetComponent<InventoryManager>().medkits -= 1;
-            gameObject.GetComponent<InventoryManager>().currentItems -= 1;
-            gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
+            gunObject.SetActive(true);
+            moveSpeed = 0;
+            yield return new WaitForSeconds(.1f);
+            gunObject.SetActive(false);
+            moveSpeed = playerDefaultMoveSpeed;
+            readyToFire = false;
+            gameObject.GetComponent<InventoryManager>().maxItems -= 1;
+            gunCycleRate = fireRate;
         }
-
-        if (thrownItem == craftableItems.Fuel && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().fuel > 0)
-        {
-            Instantiate(fuelPrefab, transform.position + (playerMesh.transform.forward * throwableSpawnDistance), playerMesh.transform.rotation);
-            throwCurrentCooldown = throwMaxCooldown;
-            gameObject.GetComponent<InventoryManager>().fuel -= 1;
-            gameObject.GetComponent<InventoryManager>().currentItems -= 1;
-            gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
-        }
-
-        if (thrownItem == craftableItems.Ammo && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().ammo > 0)
-        {
-            Instantiate(ammoPrefab, transform.position + (playerMesh.transform.forward * throwableSpawnDistance), playerMesh.transform.rotation);
-            throwCurrentCooldown = throwMaxCooldown;
-            gameObject.GetComponent<InventoryManager>().ammo -= 1;
-            gameObject.GetComponent<InventoryManager>().currentItems -= 1;
-            gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
-        }
-
-        if (thrownItem == craftableItems.Components && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().components > 0)
-        {
-            Instantiate(componentPrefab, transform.position + (playerMesh.transform.forward * throwableSpawnDistance), playerMesh.transform.rotation);
-            throwCurrentCooldown = throwMaxCooldown;
-            gameObject.GetComponent<InventoryManager>().components -= 1;
-            gameObject.GetComponent<InventoryManager>().currentItems -= 1;
-            gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
-        }
-
-    }
-
-    public IEnumerator GunShot()
-    {
-        gunObject.SetActive(true);
-        moveSpeed = 0;
-        yield return new WaitForSeconds(.1f);
-        gunObject.SetActive(false);
-        moveSpeed = playerDefaultMoveSpeed;
-        readyToFire = false;
-        gameObject.GetComponent<InventoryManager>().currentItems -= 1;
-        gunCycleRate = fireRate;
-    }
 }
