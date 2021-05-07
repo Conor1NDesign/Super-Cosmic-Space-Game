@@ -221,6 +221,7 @@ public class PlayerController : MonoBehaviour
             throwCurrentCooldown = throwMaxCooldown;
             gameObject.GetComponent<InventoryManager>().medkits -= 1;
             gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+            gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
         }
 
         if (thrownItem == craftableItems.Fuel && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().fuel > 0)
@@ -229,6 +230,7 @@ public class PlayerController : MonoBehaviour
             throwCurrentCooldown = throwMaxCooldown;
             gameObject.GetComponent<InventoryManager>().fuel -= 1;
             gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+            gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
         }
 
         if (thrownItem == craftableItems.Ammo && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().ammo > 0)
@@ -237,6 +239,7 @@ public class PlayerController : MonoBehaviour
             throwCurrentCooldown = throwMaxCooldown;
             gameObject.GetComponent<InventoryManager>().ammo -= 1;
             gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+            gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
         }
 
         if (thrownItem == craftableItems.Components && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().components > 0)
@@ -245,6 +248,7 @@ public class PlayerController : MonoBehaviour
             throwCurrentCooldown = throwMaxCooldown;
             gameObject.GetComponent<InventoryManager>().components -= 1;
             gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+            gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
         }
 
     }

@@ -54,6 +54,7 @@ public class ItemPickup : MonoBehaviour
                     {
                         playerInventory.ammo += 1;
                         playerInventory.currentItems += 1;
+                        playerInventory.UpdateInventoryUI();
                         Destroy(gameObject);
                     }
                 }
@@ -72,6 +73,7 @@ public class ItemPickup : MonoBehaviour
                     {
                         playerInventory.fuel += 1;
                         playerInventory.currentItems += 1;
+                        playerInventory.UpdateInventoryUI();
                         Destroy(gameObject);
                     }
                 }
@@ -90,6 +92,7 @@ public class ItemPickup : MonoBehaviour
                     {
                         playerInventory.components += 1;
                         playerInventory.currentItems += 1;
+                        playerInventory.UpdateInventoryUI();
                         Destroy(gameObject);
                     }
                 }
