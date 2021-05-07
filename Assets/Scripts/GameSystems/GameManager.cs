@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        if (!navBroken)
+        if (navBroken)
         {
             shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
             distance += (shipSpeed / 10 * Time.deltaTime);

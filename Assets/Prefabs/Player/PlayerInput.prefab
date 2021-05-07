@@ -190,6 +190,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fdb7a3e9-cb00-434d-830c-1eabe302a049
     m_ActionName: PlayerMovement/Left_Trigger[/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b7685de5-6be8-4a8a-9fe4-185a34c12125
+    m_ActionName: PlayerMovement/Back_Button[/XInputControllerWindows/select]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: PlayerMovement

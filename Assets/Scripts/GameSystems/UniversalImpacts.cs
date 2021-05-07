@@ -73,7 +73,7 @@ public class UniversalImpacts : MonoBehaviour
 
         for(int i = 0; i < impactsRemaining; impactsRemaining--)
         {
-            RollTheDice(numberOfSystems);
+            RollTheDice(numberOfSystems + 1);
             selectedSystem = diceRoll;
 
             if (selectedSystem == 1)
