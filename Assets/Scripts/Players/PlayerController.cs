@@ -87,6 +87,9 @@ public class PlayerController : MonoBehaviour
     public GameObject gunObject;
     public float fireRate;
 
+    [Header("UI Elements")]
+    public GameObject playerCard;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
