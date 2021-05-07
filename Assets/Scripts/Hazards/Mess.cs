@@ -5,10 +5,10 @@ using UnityEngine;
 public class Mess : MonoBehaviour
 {
     public GameObject rat;
-    private float ratTimer;
+    public float ratTimer;
     public float ratTimerMax;
     public float maxNumberOfRats;
-    private float currentRats;
+    public float currentRats;
     public GameObject ratSpawn1;
     public GameObject ratSpawn2;
     public GameObject ratSpawn3;
@@ -27,7 +27,7 @@ public class Mess : MonoBehaviour
     {
         ratTimer -= Time.deltaTime;
 
-        if (ratTimer <= 0f && currentRats <= maxNumberOfRats)
+        if (ratTimer <= 0f && currentRats >= maxNumberOfRats)
         {
             ratTimer = ratTimerMax;
         }
@@ -48,6 +48,7 @@ public class Mess : MonoBehaviour
 
     public void SpawnRat()
     {
+        rat.GetComponent<Rat>().spawnOrigin = gameObject;
         whichSpawn = Random.Range(1, 4);
         if (whichSpawn == 1) 
         {
@@ -62,6 +63,6 @@ public class Mess : MonoBehaviour
             Instantiate(rat, ratSpawn3.transform);
         }
     }
-    
+  
 
 }

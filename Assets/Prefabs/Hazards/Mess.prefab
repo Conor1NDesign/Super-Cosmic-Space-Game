@@ -109,9 +109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca964bd597a705488da401b34467b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rat: {fileID: 0}
-  ratTimerMax: 0
+  rat: {fileID: 5210330742182723335, guid: b4c897f8d357aa54a9c585b2f3e6b1e4, type: 3}
+  ratTimer: 0
+  ratTimerMax: 5
   maxNumberOfRats: 3
+  currentRats: 0
   ratSpawn1: {fileID: 9114459725766227334}
   ratSpawn2: {fileID: 1467389331959528346}
   ratSpawn3: {fileID: 2689698442777013408}
@@ -123,7 +125,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4719300225423904605}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3, y: 1, z: 3}
