@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
     public float gunCycleRate;
     public GameObject gunObject;
     public float fireRate;
+    public GameObject thisMess;
 
     [Header("UI Elements")]
     public GameObject playerCard;
@@ -97,6 +98,7 @@ public class PlayerController : MonoBehaviour
     public GameObject xButton;
     public GameObject yButton;
     public GameObject componentIcon;
+    
 
     private void Awake()
     {
@@ -283,6 +285,16 @@ public class PlayerController : MonoBehaviour
                     ThrowItem(craftableItems.Components);
                 }
             }
+
+           else if (role == playerRole.Gunner)
+           {
+                if (button == ShipSystems.buttonOptions.AButton)
+                {
+                    thisMess.GetComponent<Mess>().CleanMess();
+                }
+           }
+
+
         }
 
         public void ThrowItem(craftableItems thrownItem)
@@ -334,7 +346,7 @@ public class PlayerController : MonoBehaviour
             gunObject.SetActive(false);
             moveSpeed = playerDefaultMoveSpeed;
             readyToFire = false;
-            gameObject.GetComponent<InventoryManager>().maxItems -= 1;
+            gameObject.GetComponent<InventoryManager>().currentItems -= 1;
             gunCycleRate = fireRate;
         }
 }
