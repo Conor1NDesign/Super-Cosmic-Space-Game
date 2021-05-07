@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour
             gunCycleRate -= Time.deltaTime;
         }
 
-        if (gunCycleRate <= 0 && gameObject.GetComponent<InventoryManager>().maxItems > 0)
+        if (gunCycleRate <= 0 && gameObject.GetComponent<InventoryManager>().currentItems > 0)
         {
             readyToFire = true;
 

@@ -13,6 +13,7 @@ public class Mess : MonoBehaviour
     public GameObject ratSpawn2;
     public GameObject ratSpawn3;
     private int whichSpawn;
+    public bool canClean;
 
     public
 
@@ -63,6 +64,14 @@ public class Mess : MonoBehaviour
             Instantiate(rat, ratSpawn3.transform);
         }
     }
-  
+    public void OnTriggerEnter(Collider other)
+    {
+        var Janitor = other.GetComponent<PlayerController>();
+        if (Janitor.role == PlayerController.playerRole.Gunner)
+        {
+            canClean = true;
+            Janitor.thisMess = gameObject;
+        }
+    }
 
 }
