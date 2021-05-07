@@ -8,6 +8,16 @@ public class GameManager : MonoBehaviour
     [Header("Total Travel Distance")]
     public float distance;
     private float shipSpeed;
+    public float shipSpeedModifier = 10f;
+    public float shipSpeedModeifierBroken = 20f;
+    
+
+
+    [Header("Time Pressure Element")]
+    public float timeRemaining;
+    //percentage of distance you can travel at min speed and still succeed (presented as a decimal)
+    public float percentageAtMinSpeed = 0.5f;
+    
 
     [Header("Bridge Controle")]
     public GameObject shipSpeedObject;
@@ -26,6 +36,7 @@ public class GameManager : MonoBehaviour
     private float scientistHp;
     private float gunnerHp;
     private bool navBroken;
+    
 
     // Update is called once per frame
     private void Awake()
@@ -34,19 +45,23 @@ public class GameManager : MonoBehaviour
         pilotHp = pilot.GetComponent<PlayerHealth>().health;
         scientistHp = scientist.GetComponent<PlayerHealth>().health;
         gunnerHp = gunner.GetComponent<PlayerHealth>().health;
+        var minspeed = shipSpeedObject.GetComponent<ShipSpeed>().minSpeed;
+        timeRemaining  =((distance / (minspeed / shipSpeedModifier)) * percentageAtMinSpeed);
     }
     void Update()
     {
+        shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
+
         if (navBroken)
         {
-            shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
-            distance += (shipSpeed / 10 * Time.deltaTime);
+            
+            distance += (shipSpeed / shipSpeedModeifierBroken * Time.deltaTime);
         }
 
         else
         {
-            shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
-            distance -= (shipSpeed / 20 * Time.deltaTime);
+            
+            distance -= (shipSpeed / shipSpeedModifier* Time.deltaTime);
         }
 
 
@@ -55,10 +70,12 @@ public class GameManager : MonoBehaviour
             GameWin();
         }
 
-        if (engineerHp <= 0f && pilotHp <= 0f && scientistHp <= 0f && gunnerHp <= 0)
+        if ((engineerHp <= 0f && pilotHp <= 0f && scientistHp <= 0f && gunnerHp <= 0) || (timeRemaining <= 0f))
         {
             GameLoss();
         }
+
+        timeRemaining -= Time.deltaTime;
     }
 
     private void GameWin()
