@@ -60,6 +60,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Back_Button",
+                    "type": "Button",
+                    "id": "b7685de5-6be8-4a8a-9fe4-185a34c12125",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -192,6 +200,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Left_Trigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e192ff20-3222-43fe-9dde-b501f4ffe0bf",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Back_Button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
