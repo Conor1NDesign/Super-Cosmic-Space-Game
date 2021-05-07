@@ -163,7 +163,7 @@ public class PlayerController : MonoBehaviour
             gunCycleRate -= Time.deltaTime;
         }
 
-        if (gunCycleRate <= 0 && gameObject.GetComponent<InventoryManager>().maxItems > 0)
+        if (gunCycleRate <= 0 && gameObject.GetComponent<InventoryManager>().currentItems > 0)
         {
             readyToFire = true;
            
@@ -261,7 +261,7 @@ public class PlayerController : MonoBehaviour
         gunObject.SetActive(false);
         moveSpeed = playerDefaultMoveSpeed;
         readyToFire = false;
-        gameObject.GetComponent<InventoryManager>().maxItems -= 1;
+        gameObject.GetComponent<InventoryManager>().currentItems -= 1;
         gunCycleRate = fireRate;
     }
 }
