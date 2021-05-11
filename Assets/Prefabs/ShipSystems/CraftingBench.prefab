@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 4467992042581336955}
   - component: {fileID: 4467992042581336954}
   - component: {fileID: 4467992042581336949}
+  - component: {fileID: 826214310958375833}
+  - component: {fileID: 4924811803770048097}
+  - component: {fileID: 9024205306143745309}
   m_Layer: 0
   m_Name: CraftingBench
   m_TagString: Untagged
@@ -103,6 +106,45 @@ MonoBehaviour:
   playerEngineer: {fileID: 0}
   playerScientist: {fileID: 0}
   playerGunner: {fileID: 0}
+--- !u!65 &826214310958375833
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4467992042581336948}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0.5}
+--- !u!65 &4924811803770048097
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4467992042581336948}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1.25}
+  m_Center: {x: 1.5, y: 1, z: 0}
+--- !u!65 &9024205306143745309
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4467992042581336948}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1.25}
+  m_Center: {x: -1.5, y: 1, z: 0}
 --- !u!1 &4467992043958602267
 GameObject:
   m_ObjectHideFlags: 0
