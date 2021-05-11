@@ -34,6 +34,11 @@ public class UniversalImpacts : MonoBehaviour
     public GameObject messSpawnZone04;
     public GameObject messSpawnZone05;
     public GameObject messSpawnZone06;
+    public GameObject messSpawnZone07;
+    public GameObject messSpawnZone08;
+    public GameObject messSpawnZone09;
+    public GameObject messSpawnZone10;
+    public GameObject messSpawnZone11;
     //If more spawn areas are added, put them here lmao
     public int messSpawnChance;
     private int selectedMessZone;

@@ -385,6 +385,7 @@ GameObject:
   - component: {fileID: 7224609505717652573}
   - component: {fileID: 7224609505717652562}
   - component: {fileID: 6504190748033866925}
+  - component: {fileID: 6433906482763161767}
   m_Layer: 0
   m_Name: RefuelingStation
   m_TagString: Untagged
@@ -493,6 +494,19 @@ MonoBehaviour:
   refuelValue: 400
   shipSpeed: 0
   bridgeControlSystem: {fileID: 0}
+--- !u!65 &6433906482763161767
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7224609505717652563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 1}
+  m_Center: {x: 0, y: 1, z: 0.5}
 --- !u!1 &7252014580044955138
 GameObject:
   m_ObjectHideFlags: 0

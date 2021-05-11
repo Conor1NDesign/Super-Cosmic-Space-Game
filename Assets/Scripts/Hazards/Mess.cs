@@ -15,14 +15,6 @@ public class Mess : MonoBehaviour
     private int whichSpawn;
     public bool canClean;
 
-    public
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -66,19 +58,25 @@ public class Mess : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        var Janitor = other.GetComponent<PlayerController>();
-        if (Janitor.role == PlayerController.playerRole.Gunner)
+        var janitor = other.GetComponent<PlayerController>();
+        if (janitor != null)
         {
-            canClean = true;
-            Janitor.thisMess = gameObject;
+            if (janitor.role == PlayerController.playerRole.Gunner)
+            {
+                canClean = true;
+                janitor.thisMess = gameObject;
+            }
         }
     }
     public void OnTriggerExit(Collider other)
     {
-        var Janitor = other.GetComponent<PlayerController>();
-        if (Janitor.role == PlayerController.playerRole.Gunner)
+        var janitor = other.GetComponent<PlayerController>();
+        if (janitor != null)
         {
-            Janitor.thisMess = null;
+            if (janitor.role == PlayerController.playerRole.Gunner)
+            {
+                janitor.thisMess = null;
+            }
         }
     }
 
