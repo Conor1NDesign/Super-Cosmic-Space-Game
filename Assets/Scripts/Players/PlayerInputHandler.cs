@@ -117,7 +117,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             if (context.performed)
             {
-                playerController.moveSpeed = 0;
+                playerController.moveSpeed = 0.1f;
                 playerController.extinguisherObject.SetActive(true);
             }
 
