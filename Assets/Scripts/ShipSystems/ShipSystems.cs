@@ -15,6 +15,7 @@ public class ShipSystems : MonoBehaviour
     public bool broken;
     
     public GameObject shipSpeedObject;
+    public GameObject smokeParticle;
     public enum buttonOptions //Enumeration for the 4 main Input buttons on a gamepad, plus an option to select one at random.
     {
         AButton,
@@ -80,6 +81,8 @@ public class ShipSystems : MonoBehaviour
     public GameObject playerScientist;
     public GameObject playerGunner;
 
+    
+
 
     public void Awake()
     {
@@ -112,6 +115,7 @@ public class ShipSystems : MonoBehaviour
         if (systemHp == 0f)
         {
             broken = true;
+            smokeParticle.SetActive(true);
             if (shipSystem == systemType.BridgeControls)
             {
                 gameManager.GetComponent<GameManager>().BrokenNav();
@@ -333,6 +337,7 @@ public class ShipSystems : MonoBehaviour
     {
         systemHp = repairHp;
         broken = false;
+        smokeParticle.SetActive(false);
 
         if (shipSystem == systemType.BridgeControls)
         {
