@@ -185,17 +185,17 @@ public class PlayerController : MonoBehaviour
         //Button Popups
         if (canInteract == true)
         {
-            if (systemInRange.shipSystem == ShipSystems.systemType.CraftingBench)
+            if (systemInRange.shipSystem == ShipSystems.systemType.CraftingBench && role == playerRole.Scientist)
             {
                 craftingButtons.SetActive(true);
             }
 
-            else if (systemInRange.shipSystem == ShipSystems.systemType.BridgeControls)
+            else if (systemInRange.shipSystem == ShipSystems.systemType.BridgeControls && role == playerRole.Pilot)
             {
                 bridgeButtons.SetActive(true);
             }
 
-            else if (systemInRange.shipSystem == ShipSystems.systemType.FuelStation)
+            else if (systemInRange.shipSystem == ShipSystems.systemType.FuelStation && role == playerRole.Pilot)
             {
                 fuelButtons.SetActive(true);
             }

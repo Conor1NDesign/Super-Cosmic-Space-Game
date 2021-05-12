@@ -71,6 +71,9 @@ GameObject:
   - component: {fileID: 6726333542392216913}
   - component: {fileID: 6726333542392216912}
   - component: {fileID: 6726333542392216927}
+  - component: {fileID: 1652678368343443312}
+  - component: {fileID: 6141257352541695089}
+  - component: {fileID: 6176416056646666635}
   m_Layer: 0
   m_Name: EngineControl
   m_TagString: Untagged
@@ -162,6 +165,45 @@ MonoBehaviour:
   playerEngineer: {fileID: 0}
   playerScientist: {fileID: 0}
   playerGunner: {fileID: 0}
+--- !u!65 &1652678368343443312
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6726333542392216926}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.5, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0.5}
+--- !u!65 &6141257352541695089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6726333542392216926}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 2, z: 1.5}
+  m_Center: {x: 1.5, y: 1, z: -0.75}
+--- !u!65 &6176416056646666635
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6726333542392216926}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 2, z: 1.5}
+  m_Center: {x: -1.5, y: 1, z: -0.75}
 --- !u!1 &6726333543702369329
 GameObject:
   m_ObjectHideFlags: 0
