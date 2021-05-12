@@ -2,29 +2,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Total Travel Distance")]
-    public float distance;
+    public float maxDistance;
+    public float currentDistance;
     private float shipSpeed;
     public float shipSpeedModifier = 10f;
     public float shipSpeedModeifierBroken = 20f;
     
-
-
     [Header("Time Pressure Element")]
     public float timeRemaining;
     //percentage of distance you can travel at min speed and still succeed (presented as a decimal)
     public float percentageAtMinSpeed = 0.5f;
     
-
-    [Header("Bridge Controle")]
+    [Header("Bridge Controls and Refueling Station")]
     public GameObject shipSpeedObject;
+    public GameObject fuelStation;
 
     [Header("Win/Loss UI")]
     public GameObject winText;
     public GameObject loseText;
+    [Header("Progress Slider")]
+    public Slider progressSlider;
+    [Header("Ship Speed Text Object")]
+    public Text shipSpeedText;
+    [Header("FuelGauge")]
+    public Slider fuelGauge;
 
     [Header("Player Objects")]
     public GameObject pilot;
@@ -39,33 +45,35 @@ public class GameManager : MonoBehaviour
     
 
     // Update is called once per frame
-    private void Awake()
+    public void Awake()
     {
+        var minspeed = shipSpeedObject.GetComponent<ShipSpeed>().minSpeed;
+        timeRemaining  = ((maxDistance / (minspeed / shipSpeedModifier)) * percentageAtMinSpeed);
+        progressSlider.maxValue = maxDistance;
+        fuelGauge.maxValue = fuelStation.GetComponent<Fuel>().maxFuel;
+    }
+    public void Update()
+    {
+        shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
+
+        //Get Player's HP values
         engineerHp = engineer.GetComponent<PlayerHealth>().health;
         pilotHp = pilot.GetComponent<PlayerHealth>().health;
         scientistHp = scientist.GetComponent<PlayerHealth>().health;
         gunnerHp = gunner.GetComponent<PlayerHealth>().health;
-        var minspeed = shipSpeedObject.GetComponent<ShipSpeed>().minSpeed;
-        timeRemaining  =((distance / (minspeed / shipSpeedModifier)) * percentageAtMinSpeed);
-    }
-    void Update()
-    {
-        shipSpeed = shipSpeedObject.GetComponent<ShipSpeed>().shipActualSpeed;
 
         if (navBroken)
         {
-            
-            distance += (shipSpeed / shipSpeedModeifierBroken * Time.deltaTime);
+            currentDistance -= (shipSpeed / shipSpeedModeifierBroken * Time.deltaTime);
         }
 
         else
         {
-            
-            distance -= (shipSpeed / shipSpeedModifier* Time.deltaTime);
+            currentDistance += (shipSpeed / shipSpeedModifier* Time.deltaTime);
         }
 
 
-        if (distance <= 0f)
+        if (currentDistance >= maxDistance)
         {
             GameWin();
         }
@@ -76,6 +84,10 @@ public class GameManager : MonoBehaviour
         }
 
         timeRemaining -= Time.deltaTime;
+        progressSlider.value = currentDistance;
+        shipSpeedText.text = shipSpeed.ToString();
+
+        fuelGauge.value = fuelStation.GetComponent<Fuel>().currentFuel;
     }
 
     private void GameWin()

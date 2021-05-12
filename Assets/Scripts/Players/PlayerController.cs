@@ -243,6 +243,11 @@ public class PlayerController : MonoBehaviour
             yButton.SetActive(false);
             componentIcon.SetActive(false);
         }
+
+        if (extinguisherObject.activeSelf)
+        {
+            controller.Move(-playerMesh.transform.forward / 100);
+        }
     }
 
         public void RotateTowardsMovement(Quaternion rotation)
@@ -290,6 +295,7 @@ public class PlayerController : MonoBehaviour
            {
                 if (button == ShipSystems.buttonOptions.AButton)
                 {
+                if (thisMess != null)
                     thisMess.GetComponent<Mess>().CleanMess();
                 }
            }
