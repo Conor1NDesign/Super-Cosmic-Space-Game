@@ -284,6 +284,7 @@ public class ShipSystems : MonoBehaviour
             gameObject.GetComponent<Fuel>().Refuel();
             interactingPlayer.GetComponent<InventoryManager>().currentItems -= 1;
             interactingPlayer.GetComponent<InventoryManager>().fuel -= 1;
+            interactingPlayer.GetComponent<InventoryManager>().UpdateInventoryUI();
         }
     }
 
@@ -330,6 +331,7 @@ public class ShipSystems : MonoBehaviour
         {
             systemHp += maintanenceValue;
             interactingPlayer.GetComponent<InventoryManager>().currentItems -= 1;
+            interactingPlayer.GetComponent<InventoryManager>().UpdateInventoryUI();
         }
     }
 
