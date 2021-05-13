@@ -128,6 +128,7 @@ public class ShipSystems : MonoBehaviour
 
             if (shipSystem == systemType.LifeSupport)
             {
+                gameManager.GetComponent<GameManager>().lifeSupportAlert();
                 playerPilot.GetComponent<PlayerHealth>().LifeSupportBroke();
                 playerEngineer.GetComponent<PlayerHealth>().LifeSupportBroke();
                 playerScientist.GetComponent<PlayerHealth>().LifeSupportBroke();
@@ -303,6 +304,7 @@ public class ShipSystems : MonoBehaviour
 
     public void Impact()
     {
+        gameManager.GetComponent<GameManager>().ImpactAlert();
         systemHp -= (Random.Range(0, (shipSpeed / 2)));
         if (systemHp <= 0)
             systemHp = 0;

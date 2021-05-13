@@ -10,6 +10,8 @@ public class Fuel : MonoBehaviour
     public float refuelValue;
     public float shipSpeed;
     public GameObject bridgeControlSystem;
+    public GameObject fuelMessage;
+    public float displayTime;
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,6 +33,7 @@ public class Fuel : MonoBehaviour
         if (currentFuel <= empty)
         {
             bridgeControlSystem.GetComponent<ShipSpeed>().OutOfFuel();
+            fuelAlert();
         }
 
         if (currentFuel > maxFuel)
@@ -44,5 +47,12 @@ public class Fuel : MonoBehaviour
         currentFuel += refuelValue;
         bridgeControlSystem.GetComponent<ShipSpeed>().Refuel();
     }
-    
+
+
+    public IEnumerator fuelAlert()
+    {
+        fuelMessage.SetActive(true);
+        yield return new WaitForSeconds(displayTime);
+        fuelMessage.SetActive(false);
+    }
 }

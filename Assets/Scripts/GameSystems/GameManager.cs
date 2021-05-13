@@ -32,6 +32,13 @@ public class GameManager : MonoBehaviour
     [Header("FuelGauge")]
     public Slider fuelGauge;
 
+    [Header("ShipMessages")]
+    public GameObject impactMessage;
+    public GameObject fuelMessage;
+    public GameObject lifeSupportMessage;
+    public float displayTime;
+
+
     [Header("Player Objects")]
     public GameObject pilot;
     public GameObject engineer;
@@ -109,4 +116,21 @@ public class GameManager : MonoBehaviour
     {
         navBroken = false;
     }
+
+    public IEnumerator ImpactAlert()
+    {
+        impactMessage.SetActive(true);
+        yield return new WaitForSeconds(displayTime);
+        impactMessage.SetActive(false);
+    }
+
+
+
+    public IEnumerator lifeSupportAlert()
+    {
+        lifeSupportMessage.SetActive(true);
+        yield return new WaitForSeconds(displayTime);
+        lifeSupportMessage.SetActive(false);
+    }
+
 }
