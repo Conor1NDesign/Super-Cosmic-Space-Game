@@ -81,8 +81,16 @@ public class ShipSystems : MonoBehaviour
     public GameObject playerScientist;
     public GameObject playerGunner;
 
-    
+    [Header("Ship Status Icon")]
+    public Image statusIcon;
 
+    [Header("Minimap Stuff")]
+    public GameObject minimap;
+    public int minimapLifetime;
+
+    [Header("System HP Bar")]
+    public GameObject healthBar;
+    public Slider healthSlider;
 
     public void Awake()
     {
@@ -97,6 +105,9 @@ public class ShipSystems : MonoBehaviour
         playerEngineer = GameObject.Find("Player_2_Engineer");
         playerScientist = GameObject.Find("Player_3_Scientist");
         playerGunner = GameObject.Find("Player_4_Gunner");
+
+        healthSlider.maxValue = maxSystemHp;
+        healthSlider.value = maxSystemHp;
     }
 
     // Update is called once per frame
@@ -135,8 +146,15 @@ public class ShipSystems : MonoBehaviour
                 playerGunner.GetComponent<PlayerHealth>().LifeSupportBroke();
             }
         }
-        
 
+        if (systemHp >= 75)
+            statusIcon.color = new Color(0, 255, 0);
+        else if (systemHp < 75 && systemHp >= 30)
+            statusIcon.color = new Color(255, 255, 0);
+        else if (systemHp < 30)
+            statusIcon.color = new Color(255, 0, 0);
+
+        healthSlider.value = systemHp;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -163,6 +181,7 @@ public class ShipSystems : MonoBehaviour
                 {
                     interactingPlayer = other;
                     WakeSystem(playerController);
+                    healthBar.SetActive(true);
                 }
                 else Debug.Log("Engineer not found");
 
@@ -202,6 +221,7 @@ public class ShipSystems : MonoBehaviour
         {
             other.GetComponent<PlayerController>().canInteract = false;
             beingInteracted = false;
+            healthBar.SetActive(false);
             //buttonPrompt.SetActive(false);
         }
         else return;
@@ -300,6 +320,11 @@ public class ShipSystems : MonoBehaviour
         {
             gameObject.GetComponent<ShipSpeed>().Deccelerate();
         }
+
+        if (button == buttonOptions.YButton)
+        {
+            StartCoroutine(CloseMiniMap());
+        }
     }
 
     public void Impact()
@@ -362,4 +387,11 @@ public class ShipSystems : MonoBehaviour
         }
     }
 
+    public IEnumerator CloseMiniMap()
+    {
+        Debug.Log("Poggy Woggy Fuck UI :)");
+        minimap.SetActive(true);
+        yield return new WaitForSeconds(minimapLifetime);
+        minimap.SetActive(false);
+    }
 }
