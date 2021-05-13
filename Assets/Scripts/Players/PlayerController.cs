@@ -98,7 +98,11 @@ public class PlayerController : MonoBehaviour
     public GameObject xButton;
     public GameObject yButton;
     public GameObject componentIcon;
-    
+    public GameObject pilotReq;
+    public GameObject engiReq;
+    public GameObject sciReq;
+    public GameObject janiReq;
+
 
     private void Awake()
     {

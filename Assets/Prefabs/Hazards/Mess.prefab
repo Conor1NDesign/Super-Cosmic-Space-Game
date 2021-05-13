@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 4286435184497331557}
   - component: {fileID: 5758628674548303363}
   - component: {fileID: 225456671342466689}
+  - component: {fileID: 2523782849838843505}
   m_Layer: 0
   m_Name: Mess
   m_TagString: Untagged
@@ -131,6 +132,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 1, z: 3}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2523782849838843505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719300225423904605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1851eee9aab02074dae44b3551a53bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerColour: {r: 0.26415092, g: 0.12911858, b: 0.06603773, a: 0.39215687}
+  triggerWireColour: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &7097127521308503843
 GameObject:
   m_ObjectHideFlags: 0
