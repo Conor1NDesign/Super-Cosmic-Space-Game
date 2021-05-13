@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &7054681408694662595
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451271338957609042}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8202647, y: 0.8526449, z: 2.5022197}
+  m_Center: {x: 0.08986747, y: 0.3117566, z: -0.286762}
 --- !u!1 &5210330742182723335
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,9 +25,10 @@ GameObject:
   - component: {fileID: 3336812957894729341}
   - component: {fileID: 2889047980097663113}
   - component: {fileID: 1963382764374801556}
+  - component: {fileID: 6020639354296520364}
   m_Layer: 0
   m_Name: Space_Rat_Small
-  m_TagString: Rat
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,8 +60,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ada5d745e6e0b448a42773a688781b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ratDamage: 10
+  spawnOrigin: {fileID: 0}
   ratHealth: 100
+  navAgent: {fileID: 0}
+  wanderRadius: 10
+  wanderTimer: 1
+  detectionRadius: {fileID: 0}
 --- !u!65 &2889047980097663113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56,11 +74,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5210330742182723335}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.55862445, y: 0.54992175, z: 1.290138}
-  m_Center: {x: -0.033650726, y: 0.303676, z: -0.14317551}
+  m_Size: {x: 2, y: 1, z: 4.5}
+  m_Center: {x: 0, y: 0, z: 0.7999891}
 --- !u!54 &1963382764374801556
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -77,6 +95,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!195 &6020639354296520364
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5210330742182723335}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &757261376357868803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144,8 +184,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPACE_RATS
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a232302a5c11e604eb2d61cb86103232, type: 3}
+      propertyPath: m_TagString
+      value: Rat
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a232302a5c11e604eb2d61cb86103232, type: 3}
+--- !u!1 &451271338957609042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a232302a5c11e604eb2d61cb86103232, type: 3}
+  m_PrefabInstance: {fileID: 757261376357868803}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &939260319867486952 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a232302a5c11e604eb2d61cb86103232, type: 3}

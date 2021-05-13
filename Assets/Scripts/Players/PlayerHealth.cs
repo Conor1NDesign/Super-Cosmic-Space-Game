@@ -61,11 +61,11 @@ public class PlayerHealth : MonoBehaviour
             iframes = invicibility;
             Debug.Log("burned");
         }
-        if (other.tag == "Rat")
+        if (other.tag == "Rat" && iframes <=0f)
         {
             health -= ratDamage;
             iframes = invicibility;
-
+            Debug.Log("rats rats were the rats");
         }
 
     }
@@ -77,6 +77,12 @@ public class PlayerHealth : MonoBehaviour
             health -= fireDamage;
             iframes = invicibility;
             Debug.Log("BURNING  ");
+        }
+        if (other.tag == "Rat" && iframes <= 0f)
+        {
+            health -= ratDamage;
+            iframes = invicibility;
+            Debug.Log("rats rats were the rats");
         }
 
     }

@@ -14,14 +14,12 @@ public class Rat : MonoBehaviour
 
     private Transform target;
     private float timer;
-
-    public GameObject detectionRadius;
     private bool hunting;
 
     // Start is called before the first frame update
     void Awake ()
     {
-        navAgent = GetComponent<NavMeshAgent>();
+        navAgent = gameObject.GetComponent<NavMeshAgent>();
         timer = wanderTimer;
     }
 
