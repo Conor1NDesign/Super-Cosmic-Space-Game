@@ -46,19 +46,13 @@ public class UniversalImpacts : MonoBehaviour
     public List<GameObject> activeCameras;
 
 
-
-
-    public void Awake()
-    {
-        
-    }
-
     void Update()
     {
         if (impactCurrentCooldown > 0f)
         {
             impactCurrentCooldown -= (Time.deltaTime * (bridgeControlSystem.GetComponent<ShipSpeed>().shipActualSpeed / 10));
         }
+
         if (impactCurrentCooldown <= 0f)
         {
             ImpactOccurance();
@@ -73,6 +67,8 @@ public class UniversalImpacts : MonoBehaviour
 
     public void ImpactOccurance()
     {
+        StartCoroutine(GetComponent<GameManager>().ImpactAlert());
+
         RollTheDice(maxImpacts + 1);
         impactsRemaining = diceRoll;
 
