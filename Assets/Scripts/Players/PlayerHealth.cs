@@ -25,6 +25,13 @@ public class PlayerHealth : MonoBehaviour
     [Header("UI Elements")]
     public Slider healthSlider;
 
+    [Header("Death and Respawn Variables")]
+    public bool isDead;
+    public bool isRespawning;
+    public Transform spawnPoint;
+    public int respawnTimeInSeconds;
+    public GameObject respawnNotification;
+
 
     void Awake()
     {
@@ -42,12 +49,13 @@ public class PlayerHealth : MonoBehaviour
         
         if (suffocating)
         {
-            health -= ( suffocationDamage * Time.deltaTime);
+            health -= (suffocationDamage * Time.deltaTime);
         }
 
         if (health <= 0f)
         {
-            gameObject.SetActive(false);
+            isDead = true;
+            StartCoroutine(RespawnTimer());
         }
 
         healthSlider.value = health;
@@ -107,5 +115,16 @@ public class PlayerHealth : MonoBehaviour
         suffocating = false;
     }
 
-
+    public IEnumerator RespawnTimer()
+    {
+        GetComponent<PlayerController>().playerMesh.SetActive(false);
+        health = maxHealth;
+        isRespawning = true;
+        respawnNotification.SetActive(true);
+        yield return new WaitForSeconds(respawnTimeInSeconds);
+        respawnNotification.SetActive(false);
+        gameObject.transform.position = spawnPoint.transform.position;
+        GetComponent<PlayerController>().playerMesh.SetActive(true);
+        isDead = false;
+    }
 }
