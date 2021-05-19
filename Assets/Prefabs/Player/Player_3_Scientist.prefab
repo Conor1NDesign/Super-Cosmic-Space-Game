@@ -264,6 +264,10 @@ MonoBehaviour:
   xButton: {fileID: 3436727297548448517}
   yButton: {fileID: 7148734403464451555}
   componentIcon: {fileID: 4461644614864686803}
+  pilotReq: {fileID: 1114783042753683421}
+  engiReq: {fileID: 2770512623338802040}
+  sciReq: {fileID: 7811461961384883595}
+  janiReq: {fileID: 3051997144948935105}
 --- !u!114 &5929047616687516911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,6 +674,26 @@ GameObject:
 --- !u!1 &4461644614864686803 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2753774955831062743, guid: 3fe254fd7fe9e5f42826ab7d9ded4cae, type: 3}
+  m_PrefabInstance: {fileID: 2007951877737954820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1114783042753683421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1487644581734408665, guid: 3fe254fd7fe9e5f42826ab7d9ded4cae, type: 3}
+  m_PrefabInstance: {fileID: 2007951877737954820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2770512623338802040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4444906688595522940, guid: 3fe254fd7fe9e5f42826ab7d9ded4cae, type: 3}
+  m_PrefabInstance: {fileID: 2007951877737954820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7811461961384883595 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8627294744163404687, guid: 3fe254fd7fe9e5f42826ab7d9ded4cae, type: 3}
+  m_PrefabInstance: {fileID: 2007951877737954820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3051997144948935105 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3568947277048723397, guid: 3fe254fd7fe9e5f42826ab7d9ded4cae, type: 3}
   m_PrefabInstance: {fileID: 2007951877737954820}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4814689988703251102

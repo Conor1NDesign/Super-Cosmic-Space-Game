@@ -98,7 +98,11 @@ public class PlayerController : MonoBehaviour
     public GameObject xButton;
     public GameObject yButton;
     public GameObject componentIcon;
-    
+    public GameObject pilotReq;
+    public GameObject engiReq;
+    public GameObject sciReq;
+    public GameObject janiReq;
+
 
     private void Awake()
     {
@@ -120,133 +124,136 @@ public class PlayerController : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        var rotationVector = new Vector3(inputVector.x, 0, inputVector.y);
-        moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
-        moveDirection = transform.TransformDirection(moveDirection);
-        moveDirection = Quaternion.Euler(0, playerCamera.gameObject.transform.eulerAngles.y, 0) * moveDirection;
-        moveDirection *= moveSpeed;
-
-        controller.Move(moveDirection * Time.deltaTime);
-
-        var rotation = Quaternion.LookRotation(rotationVector);
-
-        //Checks if there is still input coming from the player. This prevents the mesh from rotating back to Y = 0 when there's no input.
-        if (moveDirection.magnitude != 0)
+        if (playerHealthScript.isDead == false)
         {
-            RotateTowardsMovement(rotation);
-            anim = playerAnimation.Moving;
-        }
-        else if (anim != playerAnimation.Interacting)
-        {
-            anim = playerAnimation.Idle;
-        }
+            var rotationVector = new Vector3(inputVector.x, 0, inputVector.y);
+            moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection = Quaternion.Euler(0, playerCamera.gameObject.transform.eulerAngles.y, 0) * moveDirection;
+            moveDirection *= moveSpeed;
 
-        //Keeps the player at y = 0
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            controller.Move(moveDirection * Time.deltaTime);
 
-        //Cooldown timer ticks down
-        if (throwCurrentCooldown >= 0f)
-        {
-            throwCurrentCooldown -= Time.deltaTime;
-        }
+            var rotation = Quaternion.LookRotation(rotationVector);
 
-        if (anim == playerAnimation.Idle)
-        {
-            playerAnimator.SetBool("isRunning", false);
-            playerAnimator.SetBool("isInteracting", false);
-        }
-
-        if (anim == playerAnimation.Moving)
-        {
-            playerAnimator.SetBool("isRunning", true);
-            playerAnimator.SetBool("isInteracting", false);
-        }
-        if (anim == playerAnimation.Interacting)
-        {
-            playerAnimator.SetBool("isRunning", false);
-            playerAnimator.SetBool("isInteracting", true);
-        }
-
-        //Gunshot Cooldown
-
-        if (gunCycleRate > 0)
-        {
-            gunCycleRate -= Time.deltaTime;
-        }
-
-        if (gunCycleRate <= 0 && gameObject.GetComponent<InventoryManager>().currentItems > 0)
-        {
-            readyToFire = true;
-
-        }
-
-        //Button Popups
-        if (canInteract == true)
-        {
-            if (systemInRange.shipSystem == ShipSystems.systemType.CraftingBench && role == playerRole.Scientist)
+            //Checks if there is still input coming from the player. This prevents the mesh from rotating back to Y = 0 when there's no input.
+            if (moveDirection.magnitude != 0)
             {
-                craftingButtons.SetActive(true);
+                RotateTowardsMovement(rotation);
+                anim = playerAnimation.Moving;
+            }
+            else if (anim != playerAnimation.Interacting)
+            {
+                anim = playerAnimation.Idle;
             }
 
-            else if (systemInRange.shipSystem == ShipSystems.systemType.BridgeControls && role == playerRole.Pilot)
+            //Keeps the player at y = 0
+            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+
+            //Cooldown timer ticks down
+            if (throwCurrentCooldown >= 0f)
             {
-                bridgeButtons.SetActive(true);
+                throwCurrentCooldown -= Time.deltaTime;
             }
 
-            else if (systemInRange.shipSystem == ShipSystems.systemType.FuelStation && role == playerRole.Pilot)
+            if (anim == playerAnimation.Idle)
             {
-                fuelButtons.SetActive(true);
+                playerAnimator.SetBool("isRunning", false);
+                playerAnimator.SetBool("isInteracting", false);
+            }
+
+            if (anim == playerAnimation.Moving)
+            {
+                playerAnimator.SetBool("isRunning", true);
+                playerAnimator.SetBool("isInteracting", false);
+            }
+            if (anim == playerAnimation.Interacting)
+            {
+                playerAnimator.SetBool("isRunning", false);
+                playerAnimator.SetBool("isInteracting", true);
+            }
+
+            //Gunshot Cooldown
+
+            if (gunCycleRate > 0)
+            {
+                gunCycleRate -= Time.deltaTime;
+            }
+
+            if (gunCycleRate <= 0 && gameObject.GetComponent<InventoryManager>().currentItems > 0)
+            {
+                readyToFire = true;
+
+            }
+
+            //Button Popups
+            if (canInteract == true)
+            {
+                if (systemInRange.shipSystem == ShipSystems.systemType.CraftingBench && role == playerRole.Scientist)
+                {
+                    craftingButtons.SetActive(true);
+                }
+
+                else if (systemInRange.shipSystem == ShipSystems.systemType.BridgeControls && role == playerRole.Pilot)
+                {
+                    bridgeButtons.SetActive(true);
+                }
+
+                else if (systemInRange.shipSystem == ShipSystems.systemType.FuelStation && role == playerRole.Pilot)
+                {
+                    fuelButtons.SetActive(true);
+                }
+
+                else
+                {
+                    if (requestedButton1 == ShipSystems.buttonOptions.AButton)
+                    {
+                        aButton.SetActive(true);
+                        if (role == playerRole.Engineer)
+                            componentIcon.SetActive(true);
+                    }
+
+                    else if (requestedButton1 == ShipSystems.buttonOptions.BButton)
+                    {
+                        bButton.SetActive(true);
+                        if (role == playerRole.Engineer)
+                            componentIcon.SetActive(true);
+                    }
+
+                    else if (requestedButton1 == ShipSystems.buttonOptions.XButton)
+                    {
+                        xButton.SetActive(true);
+                        if (role == playerRole.Engineer)
+                            componentIcon.SetActive(true);
+                    }
+
+                    else if (requestedButton1 == ShipSystems.buttonOptions.YButton)
+                    {
+                        yButton.SetActive(true);
+                        if (role == playerRole.Engineer)
+                            componentIcon.SetActive(true);
+                    }
+                }
             }
 
             else
             {
-                if (requestedButton1 == ShipSystems.buttonOptions.AButton)
-                {
-                    aButton.SetActive(true);
-                    if (role == playerRole.Engineer)
-                        componentIcon.SetActive(true);
-                }
-
-                else if (requestedButton1 == ShipSystems.buttonOptions.BButton)
-                {
-                    bButton.SetActive(true);
-                    if (role == playerRole.Engineer)
-                        componentIcon.SetActive(true);
-                }
-
-                else if (requestedButton1 == ShipSystems.buttonOptions.XButton)
-                {
-                    xButton.SetActive(true);
-                    if (role == playerRole.Engineer)
-                        componentIcon.SetActive(true);
-                }
-
-                else if (requestedButton1 == ShipSystems.buttonOptions.YButton)
-                {
-                    yButton.SetActive(true);
-                    if (role == playerRole.Engineer)
-                        componentIcon.SetActive(true);
-                }
+                craftingButtons.SetActive(false);
+                bridgeButtons.SetActive(false);
+                fuelButtons.SetActive(false);
+                aButton.SetActive(false);
+                bButton.SetActive(false);
+                xButton.SetActive(false);
+                yButton.SetActive(false);
+                componentIcon.SetActive(false);
             }
-        }
 
-        else
-        {
-            craftingButtons.SetActive(false);
-            bridgeButtons.SetActive(false);
-            fuelButtons.SetActive(false);
-            aButton.SetActive(false);
-            bButton.SetActive(false);
-            xButton.SetActive(false);
-            yButton.SetActive(false);
-            componentIcon.SetActive(false);
-        }
-
-        if (extinguisherObject.activeSelf)
-        {
-            controller.Move(-playerMesh.transform.forward / 100);
+            if (extinguisherObject.activeSelf)
+            {
+                controller.Move(-playerMesh.transform.forward / 75);
+            }
         }
     }
 

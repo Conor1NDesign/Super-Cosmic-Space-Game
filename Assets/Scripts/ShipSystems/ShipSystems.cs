@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -81,8 +80,16 @@ public class ShipSystems : MonoBehaviour
     public GameObject playerScientist;
     public GameObject playerGunner;
 
-    
+    [Header("Ship Status Icon")]
+    public Image statusIcon;
 
+    [Header("Minimap Stuff")]
+    public GameObject minimap;
+    public int minimapLifetime;
+
+    [Header("System HP Bar")]
+    public GameObject healthBar;
+    public Slider healthSlider;
 
     public void Awake()
     {
@@ -97,6 +104,9 @@ public class ShipSystems : MonoBehaviour
         playerEngineer = GameObject.Find("Player_2_Engineer");
         playerScientist = GameObject.Find("Player_3_Scientist");
         playerGunner = GameObject.Find("Player_4_Gunner");
+
+        healthSlider.maxValue = maxSystemHp;
+        healthSlider.value = maxSystemHp;
     }
 
     // Update is called once per frame
@@ -128,15 +138,21 @@ public class ShipSystems : MonoBehaviour
 
             if (shipSystem == systemType.LifeSupport)
             {
-                gameManager.GetComponent<GameManager>().lifeSupportAlert();
                 playerPilot.GetComponent<PlayerHealth>().LifeSupportBroke();
                 playerEngineer.GetComponent<PlayerHealth>().LifeSupportBroke();
                 playerScientist.GetComponent<PlayerHealth>().LifeSupportBroke();
                 playerGunner.GetComponent<PlayerHealth>().LifeSupportBroke();
             }
         }
-        
 
+        if (systemHp >= 75)
+            statusIcon.color = new Color(0, 255, 0);
+        else if (systemHp < 75 && systemHp >= 30)
+            statusIcon.color = new Color(255, 255, 0);
+        else if (systemHp < 30)
+            statusIcon.color = new Color(255, 0, 0);
+
+        healthSlider.value = systemHp;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -156,31 +172,63 @@ public class ShipSystems : MonoBehaviour
                     interactingPlayer = other;
                     WakeSystem(playerController);
                 }
-                else Debug.Log("Pilot not found");
-
                 //ENGINEER CHECK
                 if (playerController.role == PlayerController.playerRole.Engineer && engineerAllowed)
                 {
                     interactingPlayer = other;
                     WakeSystem(playerController);
+                    healthBar.SetActive(true);
                 }
-                else Debug.Log("Engineer not found");
-
                 //GUNNER CHECK
                 if (playerController.role == PlayerController.playerRole.Gunner && gunnerAllowed)
                 {
                     interactingPlayer = other;
                     WakeSystem(playerController);
                 }
-                else Debug.Log("Gunner not found");
-
                 //SCIENTIST CHECK
                 if (playerController.role == PlayerController.playerRole.Scientist && scientistAllowed)
                 {
                     interactingPlayer = other;
                     WakeSystem(playerController);
                 }
-                else Debug.Log("Scientist not found");
+
+                //BEGIN CHECKS FOR BUTTON PROMPTS
+                //BRIDGE CONTROL
+                if (shipSystem == systemType.BridgeControls && playerController.role != PlayerController.playerRole.Pilot && playerController.role != PlayerController.playerRole.Engineer && !broken)
+                {
+                    playerController.pilotReq.SetActive(true);
+                }
+                else if (shipSystem == systemType.BridgeControls && broken && playerController.role != PlayerController.playerRole.Engineer)
+                    playerController.engiReq.SetActive(true);
+
+                //FUEL STATION
+                if (shipSystem == systemType.FuelStation && playerController.role != PlayerController.playerRole.Pilot && playerController.role != PlayerController.playerRole.Engineer && !broken)
+                {
+                    playerController.pilotReq.SetActive(true);
+                }
+                else if (shipSystem == systemType.FuelStation && broken && playerController.role != PlayerController.playerRole.Engineer)
+                    playerController.engiReq.SetActive(true);
+
+                //LIFE SUPPORT
+                if (shipSystem == systemType.LifeSupport && systemHp < 70)
+                {
+                    playerController.engiReq.SetActive(true);
+                }
+
+                //CRAFTING BENCH
+                if (shipSystem == systemType.CraftingBench && playerController.role != PlayerController.playerRole.Scientist && playerController.role != PlayerController.playerRole.Engineer && !broken)
+                {
+                    playerController.sciReq.SetActive(true);
+                }
+                else if (shipSystem == systemType.CraftingBench && broken && playerController.role != PlayerController.playerRole.Engineer)
+                    playerController.engiReq.SetActive(true);
+
+                //ENGINEERING
+                if (shipSystem == systemType.EngineeringControls && systemHp < 70)
+                {
+                    playerController.engiReq.SetActive(true);
+                }
+
             }
             else
             {
@@ -198,11 +246,20 @@ public class ShipSystems : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
+        var playerController = other.GetComponent<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.pilotReq.SetActive(false);
+            playerController.engiReq.SetActive(false);
+            playerController.sciReq.SetActive(false);
+            playerController.janiReq.SetActive(false);
+        }
+
         if (other == interactingPlayer)
         {
             other.GetComponent<PlayerController>().canInteract = false;
             beingInteracted = false;
-            //buttonPrompt.SetActive(false);
+            healthBar.SetActive(false);
         }
         else return;
     }
@@ -300,6 +357,11 @@ public class ShipSystems : MonoBehaviour
         {
             gameObject.GetComponent<ShipSpeed>().Deccelerate();
         }
+
+        if (button == buttonOptions.YButton)
+        {
+            StartCoroutine(CloseMiniMap());
+        }
     }
 
     public void Impact()
@@ -362,4 +424,10 @@ public class ShipSystems : MonoBehaviour
         }
     }
 
+    public IEnumerator CloseMiniMap()
+    {
+        minimap.SetActive(true);
+        yield return new WaitForSeconds(minimapLifetime);
+        minimap.SetActive(false);
+    }
 }
