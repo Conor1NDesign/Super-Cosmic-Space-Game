@@ -52,9 +52,14 @@ public class PlayerHealth : MonoBehaviour
             health -= (suffocationDamage * Time.deltaTime);
         }
 
-        if (health <= 0f)
+        if (health <= 0f && isRespawning)
         {
             isDead = true;
+            
+        }
+
+        if (isDead)
+        {
             StartCoroutine(RespawnTimer());
         }
 
@@ -117,14 +122,15 @@ public class PlayerHealth : MonoBehaviour
 
     public IEnumerator RespawnTimer()
     {
+        isDead = false;
         GetComponent<PlayerController>().playerMesh.SetActive(false);
-        health = maxHealth;
         isRespawning = true;
         respawnNotification.SetActive(true);
         yield return new WaitForSeconds(respawnTimeInSeconds);
         respawnNotification.SetActive(false);
         gameObject.transform.position = spawnPoint.transform.position;
         GetComponent<PlayerController>().playerMesh.SetActive(true);
-        isDead = false;
+        health = maxHealth;
+        isRespawning = false;
     }
 }

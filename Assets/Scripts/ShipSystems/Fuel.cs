@@ -12,6 +12,8 @@ public class Fuel : MonoBehaviour
     public GameObject bridgeControlSystem;
     public GameObject fuelMessage;
     public float displayTime;
+    private bool fuelBroken;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -44,8 +46,21 @@ public class Fuel : MonoBehaviour
 
     public void Refuel()
     {
-        currentFuel += refuelValue;
-        bridgeControlSystem.GetComponent<ShipSpeed>().Refuel();
+        if (!fuelBroken)
+        {
+            currentFuel += refuelValue;
+            bridgeControlSystem.GetComponent<ShipSpeed>().Refuel();
+        }
+    }
+
+    public void BrokenFuel()
+    {
+        fuelBroken = true;
+    }
+
+    public void Repair()
+    {
+        fuelBroken = false;
     }
 
 

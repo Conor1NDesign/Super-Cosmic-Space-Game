@@ -316,7 +316,7 @@ public class ShipSystems : MonoBehaviour
             testingDinger.SetActive(false);
         else testingDinger.SetActive(true);
 
-        if (shipSystem == systemType.CraftingBench && interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Scientist)
+        if (shipSystem == systemType.CraftingBench && interactingPlayer.GetComponent<PlayerController>().role == PlayerController.playerRole.Scientist && !broken)
         {
             interactingPlayer.GetComponent<InventoryManager>().CraftItem(button);
         }
@@ -404,6 +404,9 @@ public class ShipSystems : MonoBehaviour
         systemHp = repairHp;
         broken = false;
         smokeParticle.SetActive(false);
+        interactingPlayer.GetComponent<InventoryManager>().currentItems -= 1;
+        interactingPlayer.GetComponent<InventoryManager>().components -= 1;
+        interactingPlayer.GetComponent<InventoryManager>().UpdateInventoryUI();
 
         if (shipSystem == systemType.BridgeControls)
         {
@@ -421,6 +424,10 @@ public class ShipSystems : MonoBehaviour
             playerEngineer.GetComponent<PlayerHealth>().Repair();
             playerScientist.GetComponent<PlayerHealth>().Repair();
             playerGunner.GetComponent<PlayerHealth>().Repair();
+        }
+        if (shipSystem == systemType.FuelStation)
+        {
+            gameObject.GetComponent<Fuel>().Repair();
         }
     }
 
