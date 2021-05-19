@@ -483,6 +483,7 @@ MonoBehaviour:
   statusIcon: {fileID: 0}
   minimap: {fileID: 0}
   minimapLifetime: 0
+  minimapActive: 0
   healthBar: {fileID: 1432002619168343952}
   healthSlider: {fileID: 4988095158694330606}
 --- !u!65 &1652678368343443312
