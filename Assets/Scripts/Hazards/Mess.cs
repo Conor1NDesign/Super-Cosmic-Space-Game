@@ -34,8 +34,9 @@ public class Mess : MonoBehaviour
 
     }
 
-    public void CleanMess()
+    public void CleanMess(GameObject janitor)
     {
+
         Destroy(gameObject);
     }
 
@@ -65,6 +66,7 @@ public class Mess : MonoBehaviour
             {
                 canClean = true;
                 janitor.thisMess = gameObject;
+                janitor.aButton.SetActive(true);
             }
         }
     }
@@ -76,6 +78,7 @@ public class Mess : MonoBehaviour
             if (janitor.role == PlayerController.playerRole.Gunner)
             {
                 janitor.thisMess = null;
+                janitor.aButton.SetActive(false);
             }
         }
     }

@@ -303,7 +303,7 @@ public class PlayerController : MonoBehaviour
                 if (button == ShipSystems.buttonOptions.AButton)
                 {
                 if (thisMess != null)
-                    thisMess.GetComponent<Mess>().CleanMess();
+                    thisMess.GetComponent<Mess>().CleanMess(gameObject);
                 }
            }
 
@@ -360,6 +360,8 @@ public class PlayerController : MonoBehaviour
             moveSpeed = playerDefaultMoveSpeed;
             readyToFire = false;
             gameObject.GetComponent<InventoryManager>().currentItems -= 1;
+            gameObject.GetComponent<InventoryManager>().ammo -= 1;
+            gameObject.GetComponent<InventoryManager>().UpdateInventoryUI();
             gunCycleRate = fireRate;
         }
 }
