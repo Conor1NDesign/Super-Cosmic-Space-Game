@@ -66,6 +66,7 @@ public class Mess : MonoBehaviour
             {
                 canClean = true;
                 janitor.thisMess = gameObject;
+                Debug.Log("SHOW THE A BUTTON AAAAAA");
                 janitor.aButton.SetActive(true);
             }
         }

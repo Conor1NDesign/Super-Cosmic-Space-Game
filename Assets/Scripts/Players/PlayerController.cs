@@ -212,7 +212,11 @@ public class PlayerController : MonoBehaviour
                     {
                         aButton.SetActive(true);
                         if (role == playerRole.Engineer)
+                        {
+                            aButton.SetActive(false);
+                            bButton.SetActive(true);
                             componentIcon.SetActive(true);
+                        }
                     }
 
                     else if (requestedButton1 == ShipSystems.buttonOptions.BButton)
@@ -226,14 +230,22 @@ public class PlayerController : MonoBehaviour
                     {
                         xButton.SetActive(true);
                         if (role == playerRole.Engineer)
+                        {
+                            xButton.SetActive(false);
+                            bButton.SetActive(true);
                             componentIcon.SetActive(true);
+                        }
                     }
 
                     else if (requestedButton1 == ShipSystems.buttonOptions.YButton)
                     {
                         yButton.SetActive(true);
                         if (role == playerRole.Engineer)
+                        {
+                            yButton.SetActive(false);
+                            bButton.SetActive(true);
                             componentIcon.SetActive(true);
+                        }
                     }
                 }
             }
@@ -243,7 +255,8 @@ public class PlayerController : MonoBehaviour
                 craftingButtons.SetActive(false);
                 bridgeButtons.SetActive(false);
                 fuelButtons.SetActive(false);
-                aButton.SetActive(false);
+                if (thisMess == null)
+                    aButton.SetActive(false);
                 bButton.SetActive(false);
                 xButton.SetActive(false);
                 yButton.SetActive(false);
@@ -257,14 +270,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-        public void RotateTowardsMovement(Quaternion rotation)
-        {
+    public void RotateTowardsMovement(Quaternion rotation)
+    {
 
             //Rotates the Player's mesh towards the 'rotation' variable.
             playerMesh.gameObject.transform.rotation = Quaternion.RotateTowards(playerMesh.gameObject.transform.rotation, rotation, rotateSpeed);
-        }
+    }
 
-        public void RecieveButtonInput(ShipSystems.buttonOptions button)
+    public void RecieveButtonInput(ShipSystems.buttonOptions button)
+    { 
+        if (!GetComponent<PlayerHealth>().isDead)
         {
             if (canInteract)
             {
@@ -298,20 +313,18 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-           else if (role == playerRole.Gunner)
-           {
+            else if (role == playerRole.Gunner)
+            {
                 if (button == ShipSystems.buttonOptions.AButton)
                 {
-                if (thisMess != null)
-                    thisMess.GetComponent<Mess>().CleanMess(gameObject);
+                    if (thisMess != null)
+                        thisMess.GetComponent<Mess>().CleanMess(gameObject);
                 }
-           }
-
-
+            }
         }
+    }
 
         public void ThrowItem(craftableItems thrownItem)
-
         {
             if (thrownItem == craftableItems.Medkits && throwCurrentCooldown <= 0f && gameObject.GetComponent<InventoryManager>().medkits > 0)
             {

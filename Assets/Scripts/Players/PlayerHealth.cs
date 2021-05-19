@@ -52,10 +52,9 @@ public class PlayerHealth : MonoBehaviour
             health -= (suffocationDamage * Time.deltaTime);
         }
 
-        if (health <= 0f && isRespawning)
+        if (health <= 0f && !isRespawning)
         {
             isDead = true;
-            
         }
 
         if (isDead)

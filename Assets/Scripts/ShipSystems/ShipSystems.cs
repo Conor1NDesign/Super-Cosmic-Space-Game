@@ -86,6 +86,7 @@ public class ShipSystems : MonoBehaviour
     [Header("Minimap Stuff")]
     public GameObject minimap;
     public int minimapLifetime;
+    public bool minimapActive;
 
     [Header("System HP Bar")]
     public GameObject healthBar;
@@ -210,7 +211,7 @@ public class ShipSystems : MonoBehaviour
                     playerController.engiReq.SetActive(true);
 
                 //LIFE SUPPORT
-                if (shipSystem == systemType.LifeSupport && systemHp < 70)
+                if (shipSystem == systemType.LifeSupport && systemHp < 70 && playerController.role != PlayerController.playerRole.Engineer)
                 {
                     playerController.engiReq.SetActive(true);
                 }
@@ -224,7 +225,7 @@ public class ShipSystems : MonoBehaviour
                     playerController.engiReq.SetActive(true);
 
                 //ENGINEERING
-                if (shipSystem == systemType.EngineeringControls && systemHp < 70)
+                if (shipSystem == systemType.EngineeringControls && systemHp < 70 && playerController.role != PlayerController.playerRole.Engineer)
                 {
                     playerController.engiReq.SetActive(true);
                 }
@@ -395,6 +396,7 @@ public class ShipSystems : MonoBehaviour
         {
             systemHp += maintanenceValue;
             interactingPlayer.GetComponent<InventoryManager>().currentItems -= 1;
+            interactingPlayer.GetComponent<InventoryManager>().components -= 1;
             interactingPlayer.GetComponent<InventoryManager>().UpdateInventoryUI();
         }
     }
@@ -433,8 +435,13 @@ public class ShipSystems : MonoBehaviour
 
     public IEnumerator CloseMiniMap()
     {
-        minimap.SetActive(true);
-        yield return new WaitForSeconds(minimapLifetime);
-        minimap.SetActive(false);
+        if (!minimapActive)
+        {
+            minimapActive = true;
+            minimap.SetActive(true);
+            yield return new WaitForSeconds(minimapLifetime);
+            minimap.SetActive(false);
+            minimapActive = false;
+        }
     }
 }
