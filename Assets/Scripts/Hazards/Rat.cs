@@ -21,6 +21,7 @@ public class Rat : MonoBehaviour
     {
         navAgent = gameObject.GetComponent<NavMeshAgent>();
         timer = wanderTimer;
+        transform.parent = null;
     }
 
     // Update is called once per frame
