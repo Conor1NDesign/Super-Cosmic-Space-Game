@@ -38,6 +38,11 @@ public class InventoryManager : MonoBehaviour
     public GameObject medkit2;
     public GameObject medkit3;
 
+    [Header("Held Items UI")]
+    public GameObject heldItem1;
+    public GameObject heldItem2;
+    public GameObject heldItem3;
+
 
     public void Trash()
     {
@@ -189,6 +194,35 @@ public class InventoryManager : MonoBehaviour
                 medkit1.SetActive(true);
                 medkit2.SetActive(true);
                 medkit3.SetActive(true);
+            }
+
+            //HELD ITEMS
+            if (currentItems == 0)
+            {
+                heldItem1.SetActive(false);
+                heldItem2.SetActive(false);
+                heldItem3.SetActive(false);
+            }
+
+            if (currentItems == 1)
+            {
+                heldItem1.SetActive(true);
+                heldItem2.SetActive(false);
+                heldItem3.SetActive(false);
+            }
+
+            if (currentItems == 2)
+            {
+                heldItem1.SetActive(true);
+                heldItem2.SetActive(true);
+                heldItem3.SetActive(false);
+            }
+
+            if (currentItems == 3)
+            {
+                heldItem1.SetActive(true);
+                heldItem2.SetActive(true);
+                heldItem3.SetActive(true);
             }
         }
 
