@@ -3252,6 +3252,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 434964193270557081, guid: 4a02b2e9452615e45aa9e36b73b3ba67, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 195
+      objectReference: {fileID: 0}
+    - target: {fileID: 434964193270557081, guid: 4a02b2e9452615e45aa9e36b73b3ba67, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 195
+      objectReference: {fileID: 0}
     - target: {fileID: 1342591807123382379, guid: 4a02b2e9452615e45aa9e36b73b3ba67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3336,6 +3344,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1506142908169288922, guid: 4a02b2e9452615e45aa9e36b73b3ba67, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3373121485733300070, guid: 4a02b2e9452615e45aa9e36b73b3ba67, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3347,6 +3359,10 @@ PrefabInstance:
     - target: {fileID: 7268781271587696842, guid: 4a02b2e9452615e45aa9e36b73b3ba67, type: 3}
       propertyPath: m_Name
       value: Canvas_Fullscreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832453930452341505, guid: 4a02b2e9452615e45aa9e36b73b3ba67, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a02b2e9452615e45aa9e36b73b3ba67, type: 3}
@@ -5811,7 +5827,11 @@ PrefabInstance:
       objectReference: {fileID: 1425567753}
     - target: {fileID: 4467992042581336949, guid: b9a4dd83294f8f548a9d26ba418efa24, type: 3}
       propertyPath: minimapLifetime
-      value: 10
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467992042581336949, guid: b9a4dd83294f8f548a9d26ba418efa24, type: 3}
+      propertyPath: minimapRadialTimer
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4467992042581336952, guid: b9a4dd83294f8f548a9d26ba418efa24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17808,7 +17828,7 @@ MonoBehaviour:
   maxImpacts: 3
   impactMaxCooldown: 60
   impactMinCooldown: 20
-  impactCurrentCooldown: 0
+  impactCurrentCooldown: 10
   diceRoll: 0
   numberOfMessZones: 6
   messSpawnZone01: {fileID: 1659011361}

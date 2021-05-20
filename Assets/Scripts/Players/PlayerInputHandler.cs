@@ -21,9 +21,10 @@ public class PlayerInputHandler : MonoBehaviour
     private GameObject playerCanvas;
     private GameObject playerCamera;
 
-    private MenuButtons startButtonObject;
-    private MenuButtons quitPromptObject;
-    private MenuButtons quitConfirmObject;
+    [Header("Main Menu Stuff")]
+    public MenuButtons startButtonObject;
+    public MenuButtons quitPromptObject;
+    public MenuButtons quitConfirmObject;
 
     private float playerMoveSpeed;
 
@@ -40,6 +41,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         startButtonObject = GameObject.Find("PlayButton").GetComponent<MenuButtons>();
         quitPromptObject = GameObject.Find("QuitPromptButton").GetComponent<MenuButtons>();
+        //quitConfirmObject = quitPromptObject.exitPrompt.GetComponent<MenuButtons>();
 
 
         /* COMMENTED CHUNK OF AWAKE METHOD OUT FOR MAIN MENU TESTING
@@ -96,7 +98,11 @@ public class PlayerInputHandler : MonoBehaviour
 
         else if (quitConfirmObject != null)
         {
-            quitConfirmObject.QuitConfirm();
+            if (quitConfirmObject.gameObject.activeSelf)
+            {
+                Debug.Log("Execute Order 66");
+                quitConfirmObject.QuitConfirm();
+            }
         }
     }
 
@@ -110,14 +116,19 @@ public class PlayerInputHandler : MonoBehaviour
                 playerController.RecieveButtonInput(button);
             }
         }
+
         else if (quitConfirmObject != null)
         {
-            quitConfirmObject.CancelQuitting();
-            quitConfirmObject = null;
+            if (quitConfirmObject.gameObject.activeSelf)
+            {
+                quitConfirmObject.CancelQuitting();
+                quitConfirmObject = null;
+            }
         }
 
         else if (quitPromptObject != null)
         {
+            Debug.Log("Oh boy the prompt is up!");
             quitPromptObject.QuitPrompt();
             quitConfirmObject = quitPromptObject.exitPrompt.GetComponent<MenuButtons>();
         }
