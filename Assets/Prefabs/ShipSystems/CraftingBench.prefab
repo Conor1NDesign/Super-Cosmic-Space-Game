@@ -112,6 +112,7 @@ MonoBehaviour:
   statusIcon: {fileID: 0}
   minimap: {fileID: 0}
   minimapLifetime: 0
+  minimapActive: 0
   healthBar: {fileID: 5597331974016073517}
   healthSlider: {fileID: 262069515829725464}
 --- !u!65 &826214310958375833
@@ -1099,7 +1100,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.70710576
+      value: -0.6657292
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1111,7 +1112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70710784
+      value: 0.7461935
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_RootOrder
@@ -1119,7 +1120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: -83.477
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

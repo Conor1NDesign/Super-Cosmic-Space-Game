@@ -37,7 +37,8 @@ public class Rat : MonoBehaviour
         
         if(ratHealth <= 0)
         {
-            spawnOrigin.GetComponent<Mess>().currentRats -= 1f;
+            if (spawnOrigin != null)
+                spawnOrigin.GetComponent<Mess>().currentRats -= 1f;
             Destroy(gameObject);
         }
     }

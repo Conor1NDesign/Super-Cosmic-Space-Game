@@ -296,6 +296,7 @@ MonoBehaviour:
   statusIcon: {fileID: 0}
   minimap: {fileID: 0}
   minimapLifetime: 0
+  minimapActive: 0
   healthBar: {fileID: 8598811201161382408}
   healthSlider: {fileID: 5426717419313925718}
 --- !u!114 &-7379329018444603502
@@ -1019,15 +1020,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0000019073486
+      value: 0.7500019
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.70710576
+      value: -0.6015259
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1039,7 +1040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70710784
+      value: 0.79885334
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_RootOrder
@@ -1047,7 +1048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: -73.959
       objectReference: {fileID: 0}
     - target: {fileID: 7055022187006495090, guid: 215cdc97ce2c74343aa2b30f1f9b0122, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
